@@ -1,6 +1,6 @@
 .about-page {
     padding: 2rem;
-    background: #f9f9f9;
+    background: #b2f9d2;
     font-family: 'Segoe UI', sans-serif;
   }
   
@@ -61,3 +61,27 @@
     }
   }
   
+.social-footer {
+  padding: 30px 20px;
+  text-align: center;
+  background-color: #5ef3a6;
+  color: rgb(163, 228, 171);
+}
+.social-icons a {
+  color: rgb(199, 235, 206);
+  font-size: 24px;
+  margin: 0 12px;
+  transition: 0.3s;
+}
+.social-icons a:hover {
+  color: #00e676;
+}
+.social-icons .icons-row a {
+  color: rgb(234, 219, 219);
+  font-size: 24px;
+  transition: 0.3s;
+}
+
+.social-icons .icons-row a:hover {
+  transform: scale(1.2);
+}

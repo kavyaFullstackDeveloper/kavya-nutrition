@@ -95,7 +95,7 @@ const Home = () => {
             {img: respiratory, title: 'Respiratory Wellness', text: 'Breathe easy with anti-inflammatory foods and lung health support.'},
             {img: heart, title: 'Heart Health Nutrition', text: 'Improve blood flow, lower cholesterol, and protect your heart.'},
             {img: liver, title: 'Fatty Liver Support', text: 'Detox and heal your liver naturally through clean eating.'},
-            {img: antiaging, title: 'Anti-Aging Nutrition', text: 'Glow younger with cellular regeneration and nutrient-rich diets.'},
+            {img: antiaging, title: 'Age-Reversal diets', text: 'Glow younger with cellular regeneration and nutrient-rich diets.'},
             {img: figure, title: 'Figure Shaping Plans', text: 'Sculpt your dream body with science-backed lifestyle support.'},
             {img: gut, title: 'Gut Health Reset', text: 'Heal digestive issues and improve absorption with gut-focused nutrition.'},
             {img: motivation, title: 'Morning Motivation & Mindset', text: 'Start your day with routines that build confidence and clarity.'}
@@ -116,7 +116,7 @@ const Home = () => {
         <button onClick={() => window.location.href = '/contact'}>Contact Me 📬</button>
       </section>
       <footer className="social-footer">
-  <h3>Connect with Me 🌐</h3>
+  <h3>Connect to Me on 🌐</h3>
   <div className="social-icons">
     <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer">
       <FaInstagram size={28} />

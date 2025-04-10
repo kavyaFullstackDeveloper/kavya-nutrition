@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import './Reviews.css';  // Importing the CSS file for styling
-
-import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
-
+import './Reviews.css';
+import {
+  FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp
+} from 'react-icons/fa';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -64,7 +64,6 @@ const Reviews = () => {
     <div className="reviews-container">
       <h2 className="reviews-title">Client Reviews & Testimonials 💬</h2>
 
-      {/* Featured Testimonials */}
       {testimonials.length > 0 && (
         <div className="featured-testimonials">
           <h3>🌟 Featured Testimonials</h3>
@@ -91,7 +90,6 @@ const Reviews = () => {
         </div>
       )}
 
-      {/* Review Form */}
       <form onSubmit={handleSubmit} className="review-form">
         <input
           type="text"
@@ -121,6 +119,7 @@ const Reviews = () => {
             />
           ))}
         </div>
+
         <input 
           type="file" 
           accept="image/*" 
@@ -129,6 +128,7 @@ const Reviews = () => {
         {formData.imagePreview && (
           <img src={formData.imagePreview} alt="Preview" className="image-preview" />
         )}
+
         <label className="checkbox-label">
           <input
             type="checkbox"
@@ -138,12 +138,12 @@ const Reviews = () => {
           />
           <span>Mark as Testimonial 🌟</span>
         </label>
+
         <button type="submit" className="submit-btn">
           Submit Review
         </button>
       </form>
 
-      {/* Client Reviews */}
       {clientReviews.length > 0 ? (
         <div className="all-reviews">
           <h3>All Reviews</h3>
@@ -170,33 +170,32 @@ const Reviews = () => {
         <p className="no-reviews">No reviews yet. Be the first 💌</p>
       )}
 
-    <footer className="social-footer">
-  <h3>Connect with Me 🌐</h3>
-  <div className="social-icons">
-    <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer">
-      <FaInstagram size={28} />
-    </a>
-    <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer">
-      <FaYoutube size={28} />
-    </a>
-    <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer">
-      <FaFacebook size={28} />
-    </a>
-    <a href="https://www.linkedin.com/in/kavya-nutrition-health-wellness/" target="_blank" rel="noopener noreferrer">
-      <FaLinkedin size={28} />
-    </a>
-    <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer">
-      <FaWhatsapp size={28} />
-    </a>
-    <a href="kavya.why@gmail.com">
-      <FaEnvelope size={28} />
-    </a>
-    <a href="https://x.com/kavya_why?t=g1ryT6Wn9z0sZtvOiDk4Kg&s=09" target="_blank" rel="noopener noreferrer">
-      <FaTwitter size={28} />
-    </a>
-  </div>
-</footer>
-
+      <footer className="social-footer">
+        <h3>Connect with Me 🌐</h3>
+        <div className="social-icons">
+          <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer">
+            <FaInstagram size={28} />
+          </a>
+          <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer">
+            <FaYoutube size={28} />
+          </a>
+          <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer">
+            <FaFacebook size={28} />
+          </a>
+          <a href="https://www.linkedin.com/in/kavya-nutrition-health-wellness/" target="_blank" rel="noopener noreferrer">
+            <FaLinkedin size={28} />
+          </a>
+          <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={28} />
+          </a>
+          <a href="mailto:kavya.why@gmail.com">
+            <FaEnvelope size={28} />
+          </a>
+          <a href="https://x.com/kavya_why?t=g1ryT6Wn9z0sZtvOiDk4Kg&s=09" target="_blank" rel="noopener noreferrer">
+            <FaTwitter size={28} />
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };

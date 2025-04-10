@@ -1,165 +1,191 @@
-/* Base styling */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9fafb;
-    color: #333;
-  }
-  
-  /* Container for reviews */
-  .reviews-container {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: #b7f4bc;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title of Reviews Section */
-  .reviews-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #064e3b;
-    padding: 1rem;
-    border-radius: 10px;
-  }
-  
-  /* Featured Testimonials */
-  .featured-testimonials h3 {
-    font-size: 1.5rem;
-    color: #064e3b;
-    margin-bottom: 1rem;
-  }
-  
-  .testimonial-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .testimonial-card {
-    background-color: #f3f4f6;
-    padding: 1rem;
-    border-left: 4px solid #34d399;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .testimonial-card:hover {
-    transform: translateY(-5px);
-    transition: transform 0.2s ease;
-  }
-  
+.reviews-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.reviews-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.featured-testimonials,
+.all-reviews {
+  margin-top: 2rem;
+}
+
+.testimonial-list,
+.review-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.testimonial-card,
+.review-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.testimonial-card:hover,
+.review-card:hover {
+  transform: translateY(-5px);
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.client-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffc107;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.review {
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.rating {
+  display: flex;
+  gap: 2px;
+}
+
+.review-form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background-color: #c3eac1;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.review-form input[type="text"],
+.review-form textarea,
+.review-form input[type="file"] {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.review-form textarea {
+  resize: vertical;
+}
+
+.rating-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.submit-btn {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #1e8449;
+}
+
+.no-reviews {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-style: italic;
+  color: #888;
+}
+
+/* Footer */
+.social-footer {
+  margin-top: 4rem;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  padding-top: 2rem;
+}
+
+.social-footer h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  color: #555;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #27ae60;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
   .content {
-    display: flex;
-    gap: 1rem;
+    flex-direction: column;
     align-items: center;
-  }
-  
-  .client-image {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #34d399;
-  }
-  
-  .name {
-    font-weight: bold;
-    color: #064e3b;
-  }
-  
-  .rating {
-    display: flex;
-    gap: 0.2rem;
-  }
-  
-  .rating svg {
-    color: #ffc107;
-  }
-  
-  .review {
-    color: #4a4a4a;
-    font-size: 1rem;
-  }
-  
-  /* Form Section */
-  .review-form {
-    background-color: #def5e0;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .review-form input,
-  .review-form textarea {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 10px;
-    border: 2px solid #d1d5db;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  
-  .review-form input:focus,
-  .review-form textarea:focus {
-    border-color: #34d399;
-    outline: none;
-  }
-  
-  .review-form .rating-input {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .review-form .checkbox-label {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .review-form .submit-btn {
-    padding: 1rem 2rem;
-    background-color: #34d399;
-    color: white;
-    font-size: 1rem;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    border: none;
-  }
-  
-  .review-form .submit-btn:hover {
-    background-color: #10b981;
-  }
-  
-  /* Client Reviews Section */
-  .all-reviews {
-    margin-top: 2rem;
-  }
-  
-  .all-reviews h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #064e3b;
-    margin-bottom: 1rem;
-  }
-  
-  .review-card {
-    background-color: #f9fafb;
-    padding: 1rem;
-    border-left: 4px solid #34d399;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .no-reviews {
     text-align: center;
-    font-size: 1.25rem;
-    color: #9ca3af;
   }
-  
+
+  .client-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .testimonial-card,
+  .review-card {
+    padding: 1rem;
+  }
+
+  .review-form {
+    padding: 1.2rem;
+  }
+}
