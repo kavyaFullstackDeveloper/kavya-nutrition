@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/Kavya’s.png';
+import logo from '../assets/knlogo.png'; 
+import { FaBars, FaTimes } from 'react-icons/fa'; // For the hamburger icon
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // To toggle menu visibility
 
   const navStyle = {
     padding: '1rem 2rem',
@@ -36,7 +37,6 @@ const Navbar = () => {
   const logoStyle = {
     height: '50px',
     objectFit: 'contain',
-    cursor: 'pointer',
   };
 
   const handleHover = (e, isHovering) => {
@@ -44,50 +44,46 @@ const Navbar = () => {
     e.target.style.transform = isHovering ? 'scale(1.05)' : 'scale(1)';
   };
 
-  // Toggle the menu visibility on logo click
+  // Toggle the menu visibility
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Close the menu when a link is clicked
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <nav style={navStyle}>
       {/* Left Logo */}
-      <div onClick={toggleMenu}>
+      <Link to="/">
         <img src={logo} alt="Vital Vibes Logo" style={logoStyle} />
+      </Link>
+
+      {/* Hamburger Icon for Mobile */}
+      <div className="hamburger" onClick={toggleMenu} style={{ display: 'none' }}>
+        <FaBars size={30} />
       </div>
 
       {/* Navigation Links */}
-      <div
-        style={{
-          ...linkContainerStyle,
-          position: 'absolute',
-          top: '70px',
-          left: 0,
-          right: 0,
-          backgroundColor: '#c8e6c9',
-          display: isMenuOpen ? 'block' : 'none',
-          padding: '1rem',
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-          zIndex: 999,
-        }}
-      >
-        {[{ path: '/', label: 'Home' }, { path: '/about', label: 'About' }, { path: '/reviews', label: 'Reviews' }, { path: '/contact', label: 'Contact Me' }].map(({ path, label }) => (
+      <div className={`nav-links ${menuOpen ? 'open' : ''}`} style={linkContainerStyle}>
+        {[ 
+          { path: '/', label: 'Home' },
+          { path: '/about', label: 'About' },
+          { path: '/reviews', label: 'Reviews' },
+          { path: '/contact', label: 'Contact Me' },
+        ].map(({ path, label }) => (
           <Link
             key={path}
             to={path}
             style={linkStyle}
             onMouseEnter={(e) => handleHover(e, true)}
             onMouseLeave={(e) => handleHover(e, false)}
-            onClick={handleLinkClick}
           >
             {label}
           </Link>
         ))}
+      </div>
+
+      {/* Mobile View: Close Icon */}
+      <div className="close-menu" onClick={toggleMenu} style={{ display: 'none' }}>
+        <FaTimes size={30} />
       </div>
     </nav>
   );

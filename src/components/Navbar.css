@@ -1,64 +1,46 @@
-/* For mobile and small screens */
-nav {
-    padding: 1rem 2rem;
-    background: #c8e6c9;
+/* Default styles for the navigation container */
+.nav-links {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', sans-serif;
+    gap: 1.5rem;
   }
   
-  nav .link-container {
-    display: none; /* Hides links initially */
-  }
-  
-  nav .link-container.open {
-    display: block; /* Show links when menu is open */
-  }
-  
-  nav .logo-container {
+  /* Hamburger menu for mobile */
+  .hamburger {
+    display: none;
     cursor: pointer;
   }
   
-  nav a {
-    text-decoration: none;
-    color: #2e7d32;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease-in-out;
-    padding: 0.5rem 1rem;
+  .close-menu {
+    display: none;
+    cursor: pointer;
+  }
+  
+  /* Toggle menu visibility when mobile view */
+  .nav-links.open {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #c8e6c9;
+    padding: 1rem;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  nav a:hover {
-    background: #a5d6a7;
-    transform: scale(1.05);
-  }
-  
+  /* Media Query for Mobile */
   @media (max-width: 768px) {
-    nav {
-      flex-direction: column;
-      align-items: flex-start;
+    /* For mobile devices, hide the nav items and show the hamburger */
+    .nav-links {
+      display: none;
     }
   
-    /* Adjust the dropdown for mobile */
-    .link-container {
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      background-color: #c8e6c9;
-      padding: 1rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-  
-    .link-container a {
+    .hamburger {
       display: block;
-      padding: 0.5rem;
+    }
+  
+    .close-menu {
+      display: block;
     }
   }
   
