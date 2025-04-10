@@ -1,0 +1,63 @@
+.about-page {
+    padding: 2rem;
+    background: #f9f9f9;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .intro-section h2,
+  .card-style h3 {
+    color: #333;
+  }
+  
+  .intro-section p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .split-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .testimonial-text {
+    flex: 1;
+    min-width: 280px;
+  }
+  
+  .testimonial-image-wrapper {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .transformation-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-style {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .help-list {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    color: #444;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .split-section {
+      flex-direction: column;
+    }
+  }
+  

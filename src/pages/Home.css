@@ -1,0 +1,272 @@
+/* Base styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Hero Section */
+.hero-section {
+  background: url('../assets/bd.jpg') no-repeat center center/cover;
+  padding: 50px 0;
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+}
+
+.hero-overlay h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-overlay p {
+  font-size: 1.5rem;
+}
+
+/* About Section */
+.about-section {
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about-content {
+  flex: 1;
+  max-width: 60%;
+}
+
+.about-image-wrapper {
+  flex: 1;
+  max-width: 40%;
+}
+
+.about-image {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-list {
+  margin-top: 1rem;
+}
+
+.about-list li {
+  margin: 0.5rem 0;
+}
+
+/* Services Section */
+.services-section {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.service-card h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #064e3b;
+}
+
+.service-card p {
+  margin-top: 0.5rem;
+  color: #6b7280;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  background-color: #34d399;
+  padding: 2rem;
+  color: white;
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-section button {
+  background-color: #064e3b;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta-section button:hover {
+  background-color: #10b981;
+}
+
+/* Footer - Social Links */
+.social-footer {
+  background-color: #ffffff;
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 2px solid #e5e7eb;
+}
+
+.social-footer h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icons a {
+  color: #064e3b;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #34d399;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .about-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-content,
+  .about-image-wrapper {
+    max-width: 100%;
+  }
+
+  .services-section h2 {
+    font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .cta-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+
+  .cta-section button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .social-footer h3 {
+    font-size: 1.2rem;
+  }
+
+  .social-icons a {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1.2rem;
+  }
+
+  .about-section {
+    padding: 1rem;
+  }
+
+  .about-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .service-card {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.6rem;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+  }
+
+  .cta-section button {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .social-icons a {
+    font-size: 1.2rem;
+  }
+}
