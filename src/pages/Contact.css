@@ -50,6 +50,19 @@
   width: 60%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.form-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.form-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
 
 .image-section {
   width: 35%;
@@ -158,10 +171,10 @@ button:hover {
   padding: 30px 20px;
   text-align: center;
   background-color: #acefaf;
-  color: white;
+  color: rgb(76, 81, 78);
 }
 .social-icons a {
-  color: white;
+  color: rgb(76, 80, 77);
   font-size: 24px;
   margin: 0 12px;
   transition: 0.3s;
@@ -177,4 +190,48 @@ button:hover {
 
 .social-icons .icons-row a:hover {
   transform: scale(1.2);
+}
+
+button{
+  margin-top: 10px;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin: 0.6rem 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #0a66c2;
+  box-shadow: 0 0 5px rgba(10, 102, 194, 0.2);
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border: none;
+  background-color: #0a66c2;
+  color: white;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #004d89;
+  transform: scale(1.02);
 }

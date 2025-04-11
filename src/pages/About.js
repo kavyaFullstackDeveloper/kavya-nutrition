@@ -22,20 +22,28 @@ const About = () => {
           food, mindset, and lifestyle.
         </p>
       </section>
-
       <section className="testimonial-section split-section" data-aos="fade-up">
-        <div className="testimonial-text card-style">
-          <h3>✨ My Transformation Story</h3>
-          <p>
-            After my delivery, I struggled with postpartum belly fat, hormonal imbalance, and early signs of aging.
-            Through my own protocols, I reversed my PCOD, reduced stubborn belly fat, rejuvenated my skin, and regained
-            my confidence with figure correction and mindful nutrition.
-          </p>
-        </div>
-        <div className="testimonial-image-wrapper">
-          <img src={beforeAfterImg} alt="Before and After Kavya" className="transformation-image" />
-        </div>
-      </section>
+  <div className="testimonial-text card-style">
+    <h3>✨ My Transformation Story</h3>
+    <p>
+      After my delivery, I struggled with postpartum belly fat, hormonal imbalance, and early signs of aging.
+      Through my own protocols, I reversed my PCOD, reduced stubborn belly fat, rejuvenated my skin, and regained
+      my confidence with figure correction and mindful nutrition. This transformation helped me not only feel
+      healthier but also inspired a new purpose — to guide others through similar journeys with compassion and
+      science-backed strategies.
+    </p>
+    <p>
+      I know firsthand how overwhelming it can feel when nothing seems to work, and your body feels out of sync.
+      But with the right food, movement, and mindset approach, I turned things around. That’s why I’m so passionate
+      about helping women like me reclaim their health, feel beautiful inside-out, and live a vibrant, confident life.
+    </p>
+  </div>
+  <div className="testimonial-image-wrapper">
+    <img src={beforeAfterImg} alt="Before and After Kavya" className="transformation-image" />
+  </div>
+</section>
+
+<sec className='sec-1'>
 
       <section className="certifications-section card-style" data-aos="fade-up">
         <h3>🎓 My Credentials & Experience</h3>
@@ -62,9 +70,11 @@ const About = () => {
           <li>Figure Correction & Anti-aging Protocols</li>
           <li>Daily Mindset & Morning Motivation</li>
         </ul>
-      </section>
-       <div className="social-icons">
-                    <h3>Follow & Connect with Me 💌</h3>
+      </section>    
+      </sec>
+
+            <div id='services-helped' className='services-helped card-style'>
+            <h3>Follow & Connect with Me 💌</h3>
                      <div className="social-icons">
                         <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer">
                           <FaInstagram size={28} />

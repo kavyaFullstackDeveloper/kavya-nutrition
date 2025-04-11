@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f9fafb;
+  background-color: #e5e5e5;
   color: #333;
 }
 
@@ -17,7 +17,7 @@ body {
   background: url('../assets/bd.jpg') no-repeat center center/cover;
   padding: 50px 0;
   text-align: center;
-  color: white;
+  color: #cae0da;
 }
 
 .hero-overlay {
@@ -38,7 +38,7 @@ body {
 /* About Section */
 .about-section {
   padding: 2rem;
-  background-color: white;
+  background-color: rgb(222, 250, 230);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -71,6 +71,7 @@ body {
 
 .about-list li {
   margin: 0.5rem 0;
+  list-style: none;
 }
 
 /* Services Section */
@@ -91,7 +92,7 @@ body {
 }
 
 .service-card {
-  background-color: #ffffff;
+  background-color: rgb(222, 250, 230);
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -107,20 +108,22 @@ body {
 .service-card h3 {
   margin-top: 1rem;
   font-size: 1.5rem;
-  color: #b8eee0;
+  color: #00241b;
+  font-weight: 600;
 }
 
 .service-card p {
   margin-top: 0.5rem;
-  color: #6b7280;
+  color: #44464a;
+  font-size: large;
 }
 
 /* CTA Section */
 .cta-section {
   text-align: center;
-  background-color: #acefaf;
+  background-color: rgb(222, 250, 230);
   padding: 2rem;
-  color: white;
+  color: #00241b;
   border-radius: 10px;
   margin-top: 3rem;
 }
@@ -137,7 +140,7 @@ body {
 
 .cta-section button {
   background-color: #acefaf;
-  color: white;
+  color: #00241b;
   padding: 1rem 2rem;
   border-radius: 10px;
   font-size: 1.2rem;
@@ -147,7 +150,7 @@ body {
 }
 
 .cta-section button:hover {
-  background-color: #10b981;
+  background-color: rgb(222, 250, 230);
 }
 
 /* Footer - Social Links */

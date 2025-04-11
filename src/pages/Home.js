@@ -3,6 +3,7 @@ import './Home.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import mental from '../assets/mental.jpg';
 
 
 import kavyaAbout from '../assets/kavya.jpg';
@@ -13,6 +14,7 @@ import weightGain from '../assets/weightgain.jpg';
 import infertility from '../assets/fertility.jpg';
 import skincare from '../assets/skin-care.webp';
 import autoimmunity from '../assets/immunite.jpg';
+import cooking from '../assets/cooking.jpg'; 
 
 // Newly added
 import kids from '../assets/kids.jpg';
@@ -86,8 +88,6 @@ const Home = () => {
             {img: infertility, title: 'Infertility & Hormonal Health', text: 'Restore balance and support your fertility with holistic nutrition strategies.'},
             {img: weightGain, title: 'Healthy Weight Gain', text: 'Tailored nutrition for lean and healthy weight gain without processed foods.'},
             {img: autoimmunity, title: 'Autoimmune Wellness', text: 'Boost immunity and manage chronic inflammation through gut-focused care.'},
-            
-            // New Services
             {img: kids, title: 'Kids Nutrition & Immunity', text: 'Help your child thrive with immunity-boosting and balanced meals.'},
             {img: pregnancy, title: 'Postpartum & Pregnancy', text: 'Support before, during, and after pregnancy with tailored nutrition.'},
             {img: vegan, title: 'Vegan Diet Plans', text: 'Get plant-based balanced meal plans for optimal energy & health.'},
@@ -98,6 +98,16 @@ const Home = () => {
             {img: antiaging, title: 'Age-Reversal diets', text: 'Glow younger with cellular regeneration and nutrient-rich diets.'},
             {img: figure, title: 'Figure Shaping Plans', text: 'Sculpt your dream body with science-backed lifestyle support.'},
             {img: gut, title: 'Gut Health Reset', text: 'Heal digestive issues and improve absorption with gut-focused nutrition.'},
+            {
+              img: cooking,
+              title: 'Healthy & Easy Cooking Methods',
+              text: 'Learn how to prepare nourishing meals quickly using wholesome ingredients.'
+            },  
+            {
+              img: mental,
+              title: 'Mental Wellbeing & Brain Health',
+              text: 'Support your emotional balance, focus, and brain function through nourishing foods and mindful habits.'
+            },                      
             {img: motivation, title: 'Morning Motivation & Mindset', text: 'Start your day with routines that build confidence and clarity.'}
           ].map((item, index) => (
             <div className="service-card" key={index} data-aos="fade-up">
