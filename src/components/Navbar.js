@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/knlogo.png'; 
-import { FaBars, FaTimes } from 'react-icons/fa'; // For the hamburger icon
+import logo from '../assets/knlogo.png';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // To toggle menu visibility
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const updateMobile = () => setIsMobile(window.innerWidth <= 768);
+
+  useEffect(() => {
+    window.addEventListener('resize', updateMobile);
+    return () => window.removeEventListener('resize', updateMobile);
+  }, []);
 
   const navStyle = {
     padding: '1rem 2rem',
@@ -19,9 +29,9 @@ const Navbar = () => {
     fontFamily: "'Segoe UI', sans-serif",
   };
 
-  const linkContainerStyle = {
-    display: 'flex',
-    gap: '1.5rem',
+  const logoStyle = {
+    height: '50px',
+    objectFit: 'contain',
   };
 
   const linkStyle = {
@@ -32,11 +42,26 @@ const Navbar = () => {
     transition: 'all 0.3s ease-in-out',
     padding: '0.5rem 1rem',
     borderRadius: '10px',
+    display: 'block',
   };
 
-  const logoStyle = {
-    height: '50px',
-    objectFit: 'contain',
+  const menuStyle = {
+    display: isMobile ? (menuOpen ? 'flex' : 'none') : 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    gap: isMobile ? '1rem' : '1.5rem',
+    position: isMobile ? 'absolute' : 'static',
+    top: isMobile ? '80px' : 'auto',
+    right: isMobile ? '20px' : 'auto',
+    background: isMobile ? '#c8e6c9' : 'transparent',
+    padding: isMobile ? '1rem' : '0',
+    borderRadius: '10px',
+    boxShadow: isMobile ? '0 4px 12px rgba(0, 0, 0, 0.15)' : 'none',
+  };
+
+  const hamburgerStyle = {
+    display: isMobile ? 'block' : 'none',
+    cursor: 'pointer',
+    color: '#2e7d32',
   };
 
   const handleHover = (e, isHovering) => {
@@ -44,26 +69,21 @@ const Navbar = () => {
     e.target.style.transform = isHovering ? 'scale(1.05)' : 'scale(1)';
   };
 
-  // Toggle the menu visibility
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
   return (
     <nav style={navStyle}>
-      {/* Left Logo */}
+      {/* Logo */}
       <Link to="/">
-        <img src={logo} alt="Vital Vibes Logo" style={logoStyle} />
+        <img src={logo} alt="Kavya Nutrition" style={logoStyle} />
       </Link>
 
-      {/* Hamburger Icon for Mobile */}
-      <div className="hamburger" onClick={toggleMenu} style={{ display: 'none' }}>
-        <FaBars size={30} />
+      {/* Hamburger / Close icon */}
+      <div onClick={toggleMenu} style={hamburgerStyle}>
+        {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
       </div>
 
-      {/* Navigation Links */}
-      <div className={`nav-links ${menuOpen ? 'open' : ''}`} style={linkContainerStyle}>
-        {[ 
+      {/* Menu Links */}
+      <div className="nav-links" style={menuStyle}>
+        {[
           { path: '/', label: 'Home' },
           { path: '/about', label: 'About' },
           { path: '/reviews', label: 'Reviews' },
@@ -73,17 +93,13 @@ const Navbar = () => {
             key={path}
             to={path}
             style={linkStyle}
+            onClick={() => setMenuOpen(false)}
             onMouseEnter={(e) => handleHover(e, true)}
             onMouseLeave={(e) => handleHover(e, false)}
           >
             {label}
           </Link>
         ))}
-      </div>
-
-      {/* Mobile View: Close Icon */}
-      <div className="close-menu" onClick={toggleMenu} style={{ display: 'none' }}>
-        <FaTimes size={30} />
       </div>
     </nav>
   );
