@@ -270,7 +270,7 @@ const Reviews = () => {
           ))}
         </div>
       ) : (
-        !fetching && <p className="no-reviews">No reviews yet. Be the first 💌</p>
+        !fetching && <p className="no-reviews">💌Your story can inspire many — share your review and make a difference 💬🌟</p>
       )}
 
       {/* 🌐 SOCIAL LINKS */}
