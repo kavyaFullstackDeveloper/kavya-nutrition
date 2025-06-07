@@ -1,42 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
 import './Reviews.css';
-import { auth, provider, db, storage } from '../firebase';
-import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
-import { addDoc, collection, getDocs, serverTimestamp } from 'firebase/firestore';
+import { auth, provider, db, storage } from '../firebase.js';
+import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
+import { addDoc, collection, getDocs, serverTimestamp, query, orderBy } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import {
-  FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp
-} from 'react-icons/fa';
-import { signOut } from 'firebase/auth'; 
-
+import {v4} from "uuid";
 
 const Reviews = () => {
   const [user, setUser] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(true);
+
   const [formData, setFormData] = useState({
     name: '',
     review: '',
     rating: 0,
     isTestimonial: false,
     image: null,
-    imageBase64: '',
     imagePreview: null,
   });
-  const [loading, setLoading] = useState(false);
 
- useEffect(() => {
-  onAuthStateChanged(auth, (user) => {
-    setUser(user);
-    fetchReviews(); // ✅ Fetch after auth state determined
-  });
-}, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
 
+  useEffect(() => {
+    fetchReviews();
+  }, []);
 
   const fetchReviews = async () => {
-    const snapshot = await getDocs(collection(db, 'reviews'));
-    const data = snapshot.docs.map(doc => doc.data());
-    setReviews(data);
+    setFetching(true);
+    try {
+      const q = query(collection(db, 'review'), orderBy('createdAt', 'desc'));
+      const snapshot = await getDocs(q);
+      const data = snapshot.docs.map(doc => doc.data());
+      setReviews(data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    } finally {
+      setFetching(false);
+    }
   };
 
   const handleLogin = async () => {
@@ -48,18 +55,17 @@ const Reviews = () => {
     }
   };
 
-
-const handleLogout = () => {
-  signOut(auth)
-    .then(() => setUser(null))
-    .catch((error) => console.error('Logout error:', error));
-};
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => setUser(null))
+      .catch((error) => console.error('Logout error:', error));
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
@@ -67,69 +73,77 @@ const handleLogout = () => {
     setFormData({ ...formData, rating: ratingValue });
   };
 
-const handleImageChange = (e) => {
-  const file = e.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
       setFormData({
         ...formData,
         image: file,
-        imageBase64: reader.result,
-        imagePreview: reader.result
+        imagePreview: URL.createObjectURL(file),
       });
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
+    }
+  };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    const { review, rating, isTestimonial, image } = formData;
 
-  const { review, rating, isTestimonial, image } = formData;
-  if (!user || !review || rating < 1) {
-    return alert('Please fill all required fields');
-  }
-
-  setLoading(true);
-  try {
-    let imageUrl = '';                // default empty – we’ll fill it only if a file exists
-
-    if (image) {                      // <<— guard!
-      const imageRef = ref(storage, `reviews/${Date.now()}_${image.name}`);
-      await uploadBytes(imageRef, image);
-      imageUrl = await getDownloadURL(imageRef);
+    if (!user || !review || rating < 1) {
+      return alert('Please fill all required fields');
     }
 
-    await addDoc(collection(db, 'reviews'), {
-      name: user.displayName,
-      email: user.email,
-      review,
-      rating,
-      imageBase64: formData.imageBase64 || null,
-      imageUrl,                       // save the Storage URL too, if you like
-      isTestimonial,
-      createdAt: serverTimestamp(),
-    });
+    setLoading(true);
+    try {
+      let imageUrl = '';
 
-    alert('✅ Review submitted!');
-    setFormData({
-      name: '',
-      review: '',
-      rating: 0,
-      isTestimonial: false,
-      image: null,
-      imageBase64: '',
-      imagePreview: null,
-    });
-    fetchReviews();
-  } catch (error) {
-    console.error('Error submitting review:', error);
-  } finally {
-    setLoading(false);
-  }
-};
+ if (image) {
+  const safeFileName = image.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+  const path = `review/${v4()}`;
+  
+
+  const imageRef = ref(storage, path); // 🔥 THIS MUST BE A STRING
+
+  await uploadBytes(imageRef, image);
+  imageUrl = await getDownloadURL(imageRef);
+}
+
+
+
+      await addDoc(collection(db, 'review'), {
+        name: user.displayName,
+        email: user.email,
+        review,
+        rating,
+        imageUrl,
+        isTestimonial,
+        createdAt: serverTimestamp(),
+      });
+
+      alert('✅ Review submitted!');
+
+      if (formData.imagePreview) {
+        URL.revokeObjectURL(formData.imagePreview);
+      }
+
+      setFormData({
+        name: '',
+        review: '',
+        rating: 0,
+        isTestimonial: false,
+        image: null,
+        imagePreview: null,
+      });
+
+      fetchReviews();
+    } catch (error) {
+      console.error('Error submitting review:', error);
+      alert('❌ Upload failed. See console for details.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+   
 
 
   const testimonials = reviews.filter(r => r.isTestimonial);
@@ -140,28 +154,32 @@ const handleImageChange = (e) => {
       <h2 className="reviews-title">Client Reviews & Testimonials 💬</h2>
 
       {/* 🔐 AUTH BUTTONS */}
-<div style={{ textAlign: 'right', marginBottom: '1rem' }}>
-  {!user ? (
-    <button onClick={handleLogin} className="google-signin">
-  <img
-    src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-    alt="Google"
-    style={{ width: '20px', height: '20px' }}
-  />
-  Sign in with Google
-</button>
+      <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+        {!user ? (
+          <>
+            <p style={{ textAlign: 'left', fontStyle: 'italic', marginBottom: '0.5rem' }}>
+              Please <strong>sign in</strong> to submit your review 💬
+            </p>
+            <button onClick={handleLogin} className="google-signin">
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt="Google"
+                style={{ width: '20px', height: '20px', marginRight: '8px' }}
+              />
+              Sign in with Google to give a review
+            </button>
+          </>
+        ) : (
+          <div>
+            <span>👤 {user.displayName}</span>
+            <button onClick={handleLogout} className="google-signout" style={{ marginLeft: '10px' }}>
+              Sign Out
+            </button>
+          </div>
+        )}
+      </div>
 
-  ) : (
-    <div>
-      <span>👤 {user.displayName}</span>
-      <button onClick={handleLogout} className="google-signout" style={{ marginLeft: '10px' }}>
-        Sign Out
-      </button>
-    </div>
-  )}
-</div>
-
-
+      {/* 📝 FORM */}
       {user && (
         <form onSubmit={handleSubmit} className="review-form">
           <p>Welcome, {user.displayName}</p>
@@ -185,7 +203,7 @@ const handleImageChange = (e) => {
               />
             ))}
           </div>
-          <input type="file" accept="image/" onChange={handleImageChange} />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
           {formData.imagePreview && <img src={formData.imagePreview} alt="Preview" className="image-preview" />}
           <label className="checkbox-label">
             <input
@@ -202,6 +220,10 @@ const handleImageChange = (e) => {
         </form>
       )}
 
+      {/* 🔄 LOADING INDICATOR */}
+      {fetching && <p style={{ textAlign: 'center' }}>⏳ Loading reviews...</p>}
+
+      {/* 🌟 TESTIMONIALS */}
       {testimonials.length > 0 && (
         <div className="featured-testimonials">
           <h3>🌟 Featured Testimonials</h3>
@@ -209,8 +231,7 @@ const handleImageChange = (e) => {
             {testimonials.map((r, index) => (
               <div key={index} className="testimonial-card">
                 <div className="content">
-                  {r.imageBase64 && <img src={r.imageBase64} alt="Client" className="client-image" />}
-
+                  {r.imageUrl && <img src={r.imageUrl} alt="Client" className="client-image" />}
                   <div>
                     <p className="name">{r.name}</p>
                     <div className="rating">
@@ -227,14 +248,14 @@ const handleImageChange = (e) => {
         </div>
       )}
 
+      {/* 💬 ALL REVIEWS */}
       {clientReviews.length > 0 ? (
         <div className="all-reviews">
           <h3>All Reviews</h3>
           {clientReviews.map((r, index) => (
             <div key={index} className="review-card">
               <div className="content">
-                {r.imageBase64 && <img src={r.imageBase64} alt="Client" className="client-image" />}
-
+                {r.imageUrl && <img src={r.imageUrl} alt="Client" className="client-image" />}
                 <div>
                   <p className="name">{r.name}</p>
                   <div className="rating">
@@ -249,9 +270,10 @@ const handleImageChange = (e) => {
           ))}
         </div>
       ) : (
-        <p className="no-reviews">No reviews yet. Be the first 💌</p>
+        !fetching && <p className="no-reviews">No reviews yet. Be the first 💌</p>
       )}
 
+      {/* 🌐 SOCIAL LINKS */}
       <footer className="social-footer">
         <h3>Connect with Me 🌐</h3>
         <div className="social-icons">

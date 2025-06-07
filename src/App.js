@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("🔥 Logged in user:", user);
+      // console.log("🔥 Logged in user:", user);
       setUser(user); // Or store in context/state
     } else {
       console.log("🚫 User not logged in");
