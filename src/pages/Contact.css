@@ -117,3 +117,26 @@
   transform: scale(1.2);
   color: #00e676;
 }
+
+.selected-services ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.selected-services li {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #eef8f1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-services button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 1rem;
+  cursor: pointer;
+}

@@ -1,7 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import emailjs from 'emailjs-com';
 import './Contact.css';
-import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaInstagram, FaLinkedin, FaYoutube, FaTwitter,
+  FaFacebook, FaEnvelope, FaWhatsapp
+} from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 
 import kavyaImage from '../assets/bd.jpg';
 import kavyaRightImage from '../assets/kavyaaI.jpg';
@@ -9,35 +13,81 @@ import kavyaRightImage from '../assets/kavyaaI.jpg';
 const Contact = () => {
   const form = useRef();
   const [formVisible, setFormVisible] = useState(false);
+  const [selectedServices, setSelectedServices] = useState([]);
+  const location = useLocation();
+
+  // Extract multiple services from URL
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const allServices = params.getAll('service');
+    if (allServices.length > 0) {
+      setFormVisible(true);
+      setSelectedServices(allServices);
+    }
+  }, [location.search]);
+
+  const handleRemoveService = (title) => {
+    setSelectedServices(prev => prev.filter(s => s !== title));
+  };
+
+  const handleAddService = (e) => {
+    const value = e.target.value;
+    if (value && !selectedServices.includes(value)) {
+      setSelectedServices([...selectedServices, value]);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const name = form.current.user_name.value;
     const email = form.current.user_email.value;
     const phone = form.current.user_phone.value;
-    const service = form.current.service_interest.value;
     const message = form.current.message.value;
+    const servicesText = selectedServices.join(', ');
 
+    // Send email
     emailjs.sendForm(
       'service_ryn72vy',
       'template_2tgucj8',
       form.current,
       'KbipJItAoCbsSyj2O'
-    ).then((result) => {
-      console.log(result.text);
+    ).then(() => {
       alert('Message sent via Email! ✅');
-    }, (error) => {
-      console.log(error.text);
+    }, () => {
       alert('Oops! Email sending failed ❌');
     });
 
-    const whatsappMessage = `Hi Kavya!%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0AMessage: ${encodeURIComponent(message)}`;
+    // WhatsApp redirect
+    const whatsappMessage = `Hi Kavya!%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AServices: ${encodeURIComponent(servicesText)}%0AMessage: ${encodeURIComponent(message)}`;
     const whatsappUrl = `https://wa.me/9553591993?text=${whatsappMessage}`;
     window.open(whatsappUrl, '_blank');
 
     e.target.reset();
+    setSelectedServices([]);
   };
+
+  const allServiceOptions = [
+    "Fat Loss & Fitness",
+    "Hair Nutrition",
+    "Skin Nutrition",
+    "Diabetes & PCOS Support",
+    "Infertility & Hormonal Health",
+    "Healthy Weight Gain",
+    "Autoimmune Wellness",
+    "Kids Nutrition & Immunity",
+    "Postpartum & Pregnancy",
+    "Vegan Diet Plans",
+    "Menopause Wellness",
+    "Respiratory Wellness",
+    "Heart Health Nutrition",
+    "Fatty Liver Support",
+    "Age-Reversal diets",
+    "Figure Shaping Plans",
+    "Gut Health Reset",
+    "Healthy & Easy Cooking Methods",
+    "Mental Wellbeing & Brain Health",
+    "Morning Motivation & Mindset"
+  ];
 
   return (
     <div className="contact-page">
@@ -60,25 +110,29 @@ const Contact = () => {
               <input type="text" name="user_name" placeholder="Your Name" required />
               <input type="email" name="user_email" placeholder="Your Email" required />
               <input type="tel" name="user_phone" placeholder="Your Phone Number" pattern="[0-9]{10}" required />
-              <select name="service_interest" required>
-                <option value="">-- Select a Service --</option>
-                <option value="wellness_coaching">🌿 Personal Wellness Coaching</option>
-                <option value="fitness_programs">🔥 Fat Loss & Fitness Programs</option>
-                <option value="skin_nutrition">💆‍♀️ Skin Nutrition</option>
-                <option value="hair_nutrition">💇‍♀️ Hair Nutrition</option>
-                <option value="diabetes_support">🩺 Diabetes & PCOS Support</option>
-                <option value="postpartum_care">🤰 Postpartum & Pregnancy Care</option>
-                <option value="kids_nutrition">👶 Kids Nutrition & Immunity</option>
-                <option value="vegan_diet">🌱 Vegan Diet Plans</option>
-                <option value="menopause_wellness">🧘 Menopause Wellness</option>
-                <option value="respiratory_health">🌬️ Respiratory Health</option>
-                <option value="heart_health">❤️ Heart Health Nutrition</option>
-                <option value="fatty_liver">🧬 Fatty Liver & Metabolic Reset</option>
-                <option value="anti_aging">🔄 Anti-Aging & Cellular Nutrition</option>
-                <option value="figure_correction">💃 Figure Correction & Body Shaping</option>
-                <option value="gut_health">🦠 Gut Health Reset</option>
-                <option value="morning_motivation">🌞 Morning Motivation & Mindset Coaching</option>
+
+              <div className="selected-services">
+                <label>Selected Services:</label>
+                {selectedServices.length === 0 && <p>No service selected yet.</p>}
+                <ul>
+                  {selectedServices.map((service, idx) => (
+                    <li key={idx}>
+                      {service} <button type="button" onClick={() => handleRemoveService(service)}>❌</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <select onChange={handleAddService} defaultValue="">
+                <option value="" disabled>+ Add Another Service</option>
+                {allServiceOptions.map((opt, i) => (
+                  <option key={i} value={opt}>{opt}</option>
+                ))}
               </select>
+
+              {/* Hidden input to send services via EmailJS */}
+              <input type="hidden" name="service_interest" value={selectedServices.join(', ')} />
+
               <textarea name="message" rows="4" placeholder="Your Message" required />
               <button type="submit">📤 Send via Email & WhatsApp</button>
             </form>
