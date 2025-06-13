@@ -137,7 +137,7 @@ const Home = () => {
     <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer">
       <FaFacebook size={28} />
     </a>
-    <a href="https://www.linkedin.com/in/kavya-nutrition-health-wellness/" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.linkedin.com/in/kavyasnutrition/" target="_blank" rel="noopener noreferrer">
       <FaLinkedin size={28} />
     </a>
     <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer">

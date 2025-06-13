@@ -90,7 +90,7 @@ const Contact = () => {
               <a href="https://www.instagram.com/healthy_with_kavya" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
               <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
               <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-              <a href="https://www.linkedin.com/in/kavya-nutrition-health-wellness/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+              <a href="https://www.linkedin.com/in/kavyasnutrition/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
               <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer"><FaWhatsapp /></a>
               <a href="mailto:kavya.why@gmail.com"><FaEnvelope /></a>
               <a href="https://x.com/kavya_why" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
