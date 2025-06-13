@@ -82,7 +82,7 @@ const About = () => {
           <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer">
             <FaYoutube size={28} />
           </a>
-          <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/NutritionWithKavya/" target="_blank" rel="noopener noreferrer">
             <FaFacebook size={28} />
           </a>
           <a href="https://www.linkedin.com/in/kavyasnutrition/" target="_blank" rel="noopener noreferrer">

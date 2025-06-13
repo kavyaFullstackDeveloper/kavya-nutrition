@@ -220,10 +220,10 @@ const Reviews = () => {
         </form>
       )}
 
-      {/* 🔄 LOADING INDICATOR */}
+      
       {fetching && <p style={{ textAlign: 'center' }}>⏳ Loading reviews...</p>}
 
-      {/* 🌟 TESTIMONIALS */}
+    
       {testimonials.length > 0 && (
         <div className="featured-testimonials">
           <h3>🌟 Featured Testimonials</h3>
@@ -248,7 +248,7 @@ const Reviews = () => {
         </div>
       )}
 
-      {/* 💬 ALL REVIEWS */}
+      
       {clientReviews.length > 0 ? (
         <div className="all-reviews">
           <h3>All Reviews</h3>
@@ -279,8 +279,8 @@ const Reviews = () => {
         <div className="social-icons">
           <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer"><FaInstagram size={28} /></a>
           <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer"><FaYoutube size={28} /></a>
-          <a href="https://www.facebook.com/share/162mnDh5pF/" target="_blank" rel="noopener noreferrer"><FaFacebook size={28} /></a>
-          <a href="https://www.linkedin.com/in/kavya-nutrition-health-wellness/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={28} /></a>
+          <a href="https://www.facebook.com/NutritionWithKavya/" target="_blank" rel="noopener noreferrer"><FaFacebook size={28} /></a>
+          <a href="https://www.linkedin.com/in/kavyasnutrition/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={28} /></a>
           <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={28} /></a>
           <a href="mailto:kavya.why@gmail.com"><FaEnvelope size={28} /></a>
           <a href="https://x.com/kavya_why?t=g1ryT6Wn9z0sZtvOiDk4Kg&s=09" target="_blank" rel="noopener noreferrer"><FaTwitter size={28} /></a>
