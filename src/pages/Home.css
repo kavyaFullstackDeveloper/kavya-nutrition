@@ -1,8 +1,9 @@
-/* Base styling */
+/* ===== Base Styling ===== */
 body {
   margin: 0;
   padding: 0;
   background-color: #e5e5e5;
+  font-family: 'Segoe UI', sans-serif;
   color: #333;
 }
 
@@ -10,9 +11,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
+  background: linear-gradient(to bottom, #ffffff, #b6d9c4);
+  color: #222;
 }
 
-/* Hero Section */
+/* ===== Hero Section ===== */
 .hero-section {
   background: url('../assets/bd.jpg') no-repeat center center/cover;
   padding: 50px 0;
@@ -35,10 +38,10 @@ body {
   font-size: 1.5rem;
 }
 
-/* About Section */
+/* ===== About Section ===== */
 .about-section {
   padding: 2rem;
-  background-color: rgb(222, 250, 230);
+  background-color: #defae6;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -63,21 +66,29 @@ body {
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .about-list {
   margin-top: 1rem;
+  padding-left: 1rem;
 }
 
 .about-list li {
   margin: 0.5rem 0;
-  list-style: none;
 }
 
-/* Services Section */
+/* ===== Services Section ===== */
 .services-section {
   padding: 3rem 1rem;
   text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 .services-section h2 {
@@ -85,43 +96,76 @@ body {
   margin-bottom: 2rem;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+.service-section-title {
+  font-size: 1.5rem;
+  margin: 3rem 0 1rem;
+  color: #2e7d32;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
 }
 
+/* ===== Service Cards ===== */
 .service-card {
-  background-color: rgb(222, 250, 230);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card img {
   width: 100%;
-  height: 200px;
+  height: 160px;
   object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .service-card h3 {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  color: #00241b;
-  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0.5rem 0 0.25rem;
 }
 
 .service-card p {
-  margin-top: 0.5rem;
-  color: #404246;
-  font-size: large;
+  flex-grow: 1;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
 }
 
-/* CTA Section */
+
+.service-card:hover{
+  transform: scale(1.02);
+   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* improved shadow effect */
+  cursor: pointer;
+}
+
+.service-card.selected {
+  background-color:#d7f8ec;
+  border: 2px solid #033925; /* teal border */
+  box-shadow: 0 6px 18px rgba(52, 211, 153, 0.4);
+  transform: scale(1.03);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.checkbox {
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem;
+  background: #f0f9f4;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* ===== CTA Section ===== */
 .cta-section {
   text-align: center;
-  background-color: rgb(222, 250, 230);
+  background-color: #defae6;
   padding: 2rem;
   color: #00241b;
   border-radius: 10px;
@@ -150,12 +194,32 @@ body {
 }
 
 .cta-section button:hover {
-  background-color: rgb(222, 250, 230);
+  background-color: #defae6;
 }
 
-/* Footer - Social Links */
+/* ===== Proceed Button ===== */
+.proceed-container {
+  margin-top: 2rem;
+}
+
+.proceed-btn {
+  background-color: #42b798;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.proceed-btn:hover:not(:disabled) {
+  background-color: #369f85;
+}
+
+/* ===== Footer ===== */
 .social-footer {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 2rem 0;
   text-align: center;
   border-top: 2px solid #e5e7eb;
@@ -182,7 +246,7 @@ body {
   color: #34d399;
 }
 
-/* Mobile Responsiveness */
+/* ===== Responsive Styling ===== */
 @media (max-width: 768px) {
   .about-wrapper {
     flex-direction: column;
@@ -196,10 +260,6 @@ body {
 
   .services-section h2 {
     font-size: 2rem;
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   .cta-section h2 {
@@ -237,11 +297,6 @@ body {
     padding: 1rem;
   }
 
-  .about-image {
-    width: 100%;
-    height: auto;
-  }
-
   .service-card {
     padding: 1rem;
     margin-bottom: 1.5rem;
@@ -259,13 +314,9 @@ body {
     font-size: 1.6rem;
   }
 
-  .cta-section p {
-    font-size: 1rem;
-  }
-
+  .cta-section p,
   .cta-section button {
     font-size: 1rem;
-    padding: 0.8rem 1.5rem;
   }
 
   .social-icons a {
@@ -273,209 +324,132 @@ body {
   }
 }
 
-.services-toggle-section {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.reveal-button {
-  background-color: #42b798;
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
-}
-
-.reveal-button:hover {
-  background-color: #369f85;
-  transform: scale(1.03);
-}
-
-/* Optional fade animation for services */
-.services-section {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
+/* ===== Fade In Animation ===== */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* GENERAL */
-.home-container {
-  font-family: 'Segoe UI', sans-serif;
-  line-height: 1.6;
-}
 
-/* HERO */
-.hero-section {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/kavya.jpg') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 100px 20px;
-}
-.hero-overlay h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-/* ABOUT */
-.about-section {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 60px 20px;
-  background-color: #f9f9f9;
-}
-.about-content {
-  flex: 1;
-  padding: 20px;
-}
-.about-image-wrapper {
-  flex: 1;
-  text-align: center;
-}
-.about-image {
-  max-width: 90%;
-  border-radius: 20px;
-}
-.about-list {
-  list-style: none;
-  padding-left: 0;
-}
-.about-list li {
-  margin-bottom: 0.5rem;
-}
-
-/* SERVICES */
-.services-toggle-section {
-  text-align: center;
-  padding: 40px 20px;
-}
-.reveal-button {
-  padding: 10px 25px;
-  background-color: #009688;
-  color: white;
-  border: none;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.reveal-button:hover {
-  background-color: #00796b;
-}
-
-.services-section {
-  padding: 40px 20px;
-  background-color: #ffffff;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-.service-card {
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-.service-card.selected {
-  border-color: #28a745;
-  box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
-}
-.checkbox {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #2c7a7b;
-}
 .proceed-container {
   text-align: center;
   margin-top: 2rem;
 }
+
 .proceed-btn {
-  background-color: #28a745;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
+  background-color: #38a169;
   color: white;
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
   border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.proceed-btn:hover {
+  background-color: #2f855a;
+}
+
+.selected-services-dropdown {
+  margin-top: 1rem;
+  background: #f9f9f9;
   border-radius: 8px;
-  cursor: pointer;
+  padding: 1rem;
+  width: 90%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.service-card:hover {
-  transform: translateY(-5px);
-}
-.service-image {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
-}
-
-/* CTA */
-.cta-section {
-  background: #eee;
-  text-align: center;
-  padding: 60px 20px;
-}
-.cta-section button {
-  padding: 12px 28px;
-  font-size: 16px;
-  background-color: #673ab7;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* FOOTER */
-.social-footer {
-  background: #222;
-  color: white;
-  text-align: center;
-  padding: 30px 20px;
-}
-.social-icons a {
-  margin: 0 10px;
-  color: white;
-  transition: color 0.3s;
-}
-.social-icons a:hover {
-  color: #ffcc00;
-}
-
-.service-btn {
-  margin-top: 10px;
-  background-color: #59b98d;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.service-btn:hover {
-  background-color: #3e9c72;
-}
-
-.explore-link {
-  color: #59b98d;
+.selected-services-dropdown summary {
   font-weight: bold;
-  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
-.explore-link:hover {
-  text-decoration: underline;
+.selected-services-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.selected-service-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e6fffa;
+  border: 1px solid #b2f5ea;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.remove-service-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #e53e3e;
+  font-size: 1.2rem;
+}
+
+.selected-summary-box {
+  background-color: #f0fff4;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 128, 0, 0.1);
+  margin-top: 1.5rem;
+}
+
+.selected-summary-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.selected-service-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.remove-service-btn {
+  background: none;
+  border: none;
+  color: #c00;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.total-time {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-top: 1rem;
+}
+
+.clear-btn {
+  background-color: #ffe5e5;
+  color: #b30000;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.time-estimate {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #666;
 }

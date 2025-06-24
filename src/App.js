@@ -5,27 +5,28 @@ import About from './pages/About';
 import Reviews from './pages/Reviews';
 import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import FirestoreCheck from './firestorecheck';
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
 function App() {
-   const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
    
   useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // console.log("🔥 Logged in user:", user);
-      setUser(user); // Or store in context/state
-    } else {
-      console.log("🚫 User not logged in");
-      setUser(null);
-    }
-  });
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // console.log("🔥 Logged in user:", user);
+        setUser(user);
+      } else {
+        console.log("🚫 User not logged in");
+        setUser(null);
+      }
+    });
 
-  return () => unsubscribe();
-}, []);
+    return () => unsubscribe();
+  }, []);
 
   return (
     <Router>
@@ -36,7 +37,8 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-       <FirestoreCheck/>
+      <Footer /> 
+      <FirestoreCheck />
     </Router>
   );
 }

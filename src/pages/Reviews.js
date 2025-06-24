@@ -273,19 +273,6 @@ const Reviews = () => {
         !fetching && <p className="no-reviews">💌Your story can inspire many — share your review and make a difference 💬🌟</p>
       )}
 
-      {/* 🌐 SOCIAL LINKS */}
-      <footer className="social-footer">
-        <h3>Connect with Me 🌐</h3>
-        <div className="social-icons">
-          <a href="https://www.instagram.com/healthy_with_kavya?igsh=MWc5ZjdqZGkxajhhNA==" target="_blank" rel="noopener noreferrer"><FaInstagram size={28} /></a>
-          <a href="https://www.youtube.com/@Kavyanutritionist" target="_blank" rel="noopener noreferrer"><FaYoutube size={28} /></a>
-          <a href="https://www.facebook.com/NutritionWithKavya/" target="_blank" rel="noopener noreferrer"><FaFacebook size={28} /></a>
-          <a href="https://www.linkedin.com/in/kavyasnutrition/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={28} /></a>
-          <a href="https://wa.me/9553591993" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={28} /></a>
-          <a href="mailto:kavya.why@gmail.com"><FaEnvelope size={28} /></a>
-          <a href="https://x.com/kavya_why?t=g1ryT6Wn9z0sZtvOiDk4Kg&s=09" target="_blank" rel="noopener noreferrer"><FaTwitter size={28} /></a>
-        </div>
-      </footer>
     </div>
   );
 };
