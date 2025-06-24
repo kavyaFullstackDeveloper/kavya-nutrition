@@ -70,10 +70,11 @@ body {
 }
 
 .about-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.08); /* was 1.03 */
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2); /* stronger shadow */
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
+
 
 .about-list {
   margin-top: 1rem;
@@ -125,6 +126,7 @@ body {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 0.5rem;
+  transition: transform 0.4s ease-in-out;
 }
 
 .service-card h3 {
@@ -215,35 +217,6 @@ body {
 
 .proceed-btn:hover:not(:disabled) {
   background-color: #369f85;
-}
-
-/* ===== Footer ===== */
-.social-footer {
-  background-color: #fff;
-  padding: 2rem 0;
-  text-align: center;
-  border-top: 2px solid #e5e7eb;
-}
-
-.social-footer h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.social-icons a {
-  color: #42b798;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-  color: #34d399;
 }
 
 /* ===== Responsive Styling ===== */
@@ -452,4 +425,80 @@ body {
   font-size: 0.85rem;
   font-style: italic;
   color: #666;
+}
+
+/* ===== Animate Service Cards with Delay ===== */
+.service-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+/* Add more if needed */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Improve Hover Glow on Service Cards */
+.service-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 20px rgba(0, 128, 0, 0.2);
+}
+
+/* ===== About Image Hover and Fade-In ===== */
+.about-image {
+  opacity: 0;
+  transform: scale(0.98);
+  animation: fadeInImage 0.8s ease forwards;
+  animation-delay: 0.5s;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Extra polish on service titles */
+.service-card h3 {
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #033925;
+}
+
+
+@media (max-width: 480px) {
+  .service-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .about-image:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }

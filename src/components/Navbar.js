@@ -84,10 +84,10 @@ const Navbar = () => {
       {/* Menu Links */}
       <div className="nav-links" style={menuStyle}>
         {[
-          { path: '/', label: 'Home' },
-          { path: '/about', label: 'About' },
-          { path: '/reviews', label: 'Reviews' },
-          { path: '/contact', label: 'Contact Me' },
+          { path: '/', label: 'Wellness Hub'},
+          { path: '/about', label: 'Meet Kavya'},
+          { path: '/reviews', label: 'Success Stories'},
+          { path: '/contact', label: 'Book a Session'},
         ].map(({ path, label }) => (
           <Link
             key={path}

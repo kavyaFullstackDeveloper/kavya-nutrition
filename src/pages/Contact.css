@@ -5,6 +5,7 @@
   align-items: center;
 }
 
+
 .open-form-btn {
   border: none;
   background: transparent;
@@ -13,6 +14,13 @@
   text-align: center;
   transition: transform 0.3s;
   animation: pulse 2s infinite;
+}
+.open-form-btn span {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #1b5e20; /* Dark green for visibility */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6); /* Optional: subtle contrast */
 }
 
 .open-form-btn img {
@@ -25,12 +33,7 @@
   transition: transform 0.3s ease;
 }
 
-.open-form-btn span {
-  display: block;
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: #fff;
-}
+
 
 .open-form-btn:hover img {
   transform: scale(1.05);
@@ -87,7 +90,7 @@
 .form-section button {
   padding: 14px;
   background-color: #007bff;
-  color: white;
+  color: rgb(4, 48, 15);
   font-weight: bold;
   border: none;
   border-radius: 10px;
