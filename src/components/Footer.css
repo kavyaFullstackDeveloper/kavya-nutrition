@@ -39,8 +39,8 @@
 
 /* Scale only the SVGs on hover */
 .social-icons a:hover svg {
-  color: #E91E63;
-  transform: scale(1.3);
+  color: #1b5e20;
+  transform: scale(1.5);
 }
 
 @media (max-width: 600px) {
