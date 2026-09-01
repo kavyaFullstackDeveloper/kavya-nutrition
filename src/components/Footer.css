@@ -1,71 +1,622 @@
+/* =====================================================
+   KAVYA'S NUTRITION - PREMIUM FOOTER
+===================================================== */
+
 .social-footer {
-  background-color: #f8f9fa;
-  padding: 2rem 1rem;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  margin-top: 3rem;
+  position: relative;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(180, 145, 80, 0.12),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #062b25,
+      #0b3d33,
+      #082d28
+    );
+
+  color: #f7f3ea;
+  margin-top: 0;
+  overflow: hidden;
 }
 
-.social-footer h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-  font-weight: 800;
+
+/* =====================================================
+   TOP ACCENT LINE
+===================================================== */
+
+.footer-top-line {
+  width: 100%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b89b5e,
+    #e4d0a1,
+    #b89b5e,
+    transparent
+  );
+
+  opacity: 0.9;
 }
+
+
+/* =====================================================
+   MAIN FOOTER CONTAINER
+===================================================== */
+
+.footer-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding:
+    5rem
+    2rem
+    3.5rem;
+
+  display: grid;
+
+  grid-template-columns:
+    2fr
+    1fr
+    1.3fr;
+
+  gap: 4rem;
+
+  position: relative;
+}
+
+
+/* =====================================================
+   BRAND SECTION
+===================================================== */
+
+.footer-brand {
+  max-width: 520px;
+}
+
+
+.footer-eyebrow {
+  font-size: 0.72rem;
+
+  letter-spacing: 3px;
+
+  color: #d4b675;
+
+  font-weight: 700;
+
+  margin-bottom: 1.2rem;
+}
+
+
+.footer-brand h2 {
+  font-size: clamp(
+    2rem,
+    3vw,
+    3rem
+  );
+
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  letter-spacing: -0.5px;
+
+  margin-bottom: 1.3rem;
+
+  color: #fffdf8;
+}
+
+
+.footer-description {
+  color: rgba(255,255,255,0.7);
+
+  line-height: 1.8;
+
+  font-size: 0.95rem;
+
+  max-width: 480px;
+}
+
+
+/* =====================================================
+   FOOTER HEADINGS
+===================================================== */
+
+.footer-links h4,
+.footer-contact h4 {
+  font-size: 1rem;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  color: #d4b675;
+
+  margin-bottom: 1.5rem;
+}
+
+
+/* =====================================================
+   QUICK LINKS
+===================================================== */
+
+.footer-links {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+
+.footer-links a {
+  color: rgba(255,255,255,0.72);
+
+  text-decoration: none;
+
+  margin-bottom: 0.9rem;
+
+  font-size: 0.95rem;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.footer-links a:hover {
+  color: #e5c98e;
+
+  transform: translateX(6px);
+}
+
+
+/* =====================================================
+   CONTACT SECTION
+===================================================== */
+
+.footer-contact p {
+  color: rgba(255,255,255,0.7);
+
+  line-height: 1.7;
+
+  font-size: 0.95rem;
+
+  margin-bottom: 1.5rem;
+}
+
+
+.footer-contact-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    0.8rem
+    1.4rem;
+
+  border-radius: 50px;
+
+  text-decoration: none;
+
+  background: #d4b675;
+
+  color: #07332b;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.footer-contact-btn:hover {
+  transform: translateY(-3px);
+
+  background: #ead39f;
+
+  box-shadow:
+    0 12px 30px
+    rgba(0,0,0,0.25);
+}
+
+
+/* =====================================================
+   SOCIAL SECTION
+===================================================== */
+
+.footer-social-section {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding:
+    1rem
+    2rem
+    3.5rem;
+
+  text-align: center;
+}
+
+
+.social-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 1.2rem;
+
+  margin-bottom: 2rem;
+}
+
+
+.social-heading p {
+  font-size: 0.7rem;
+
+  letter-spacing: 2px;
+
+  color: #c9aa6d;
+
+  white-space: nowrap;
+}
+
+
+.social-line {
+  height: 1px;
+
+  width: 100px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212,182,117,0.7)
+  );
+}
+
+
+.social-line:last-child {
+  background: linear-gradient(
+    90deg,
+    rgba(212,182,117,0.7),
+    transparent
+  );
+}
+
+
+/* =====================================================
+   SOCIAL ICONS
+===================================================== */
 
 .social-icons {
   display: flex;
+
   justify-content: center;
-  gap: 1.5rem;
+
+  align-items: center;
+
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+
+  gap: 1rem;
 }
+
 
 .social-icons a {
-  color: #444;
-  opacity: 0;
-  animation: fadeInUp 0.6s ease forwards;
-  animation-delay: 0.3s;
-  transition: transform 0.2s ease, color 0.3s ease;
-  display: inline-flex;
+  width: 52px;
+
+  height: 52px;
+
+  display: flex;
+
   align-items: center;
+
   justify-content: center;
+
+  border-radius: 50%;
+
+  color: #f8f4eb;
+
+  font-size: 1.3rem;
+
+  text-decoration: none;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.12);
+
+  background:
+    rgba(255,255,255,0.05);
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    transform 0.35s cubic-bezier(.2,.8,.2,1),
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-/* Animate the SVGs inside */
-.social-icons a svg {
-  transition: transform 0.3s ease, color 0.3s ease;
+
+/* ICON HOVER */
+
+.social-icons a:hover {
+  transform:
+    translateY(-7px)
+    scale(1.08);
+
+  border-color:
+    rgba(212,182,117,0.8);
+
+  background:
+    rgba(212,182,117,0.15);
+
+  box-shadow:
+    0 12px 30px
+    rgba(0,0,0,0.25);
 }
 
-/* Scale only the SVGs on hover */
-.social-icons a:hover svg {
-  color: #1b5e20;
-  transform: scale(1.5);
+
+/* =====================================================
+   INDIVIDUAL ICON HOVER COLORS
+===================================================== */
+
+.social-icons .instagram:hover {
+  color: #ff7aa2;
 }
+
+
+.social-icons .youtube:hover {
+  color: #ff5b5b;
+}
+
+
+.social-icons .facebook:hover {
+  color: #77aaff;
+}
+
+
+.social-icons .linkedin:hover {
+  color: #58a6d8;
+}
+
+
+.social-icons .whatsapp:hover {
+  color: #5ee58b;
+}
+
+
+.social-icons .email:hover {
+  color: #e5c98e;
+}
+
+
+.social-icons .twitter:hover {
+  color: #ffffff;
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-bottom {
+  position: relative;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+
+  padding:
+    1.5rem
+    2rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  color:
+    rgba(255,255,255,0.55);
+
+  font-size: 0.8rem;
+}
+
+
+.footer-made {
+  color:
+    rgba(212,182,117,0.75);
+
+  text-align: center;
+}
+
+
+/* =====================================================
+   SCROLL TO TOP
+===================================================== */
+
+.scroll-top-btn {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(212,182,117,0.5);
+
+  background:
+    rgba(255,255,255,0.05);
+
+  color: #e5c98e;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  font-size: 0.9rem;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+
+.scroll-top-btn:hover {
+  transform:
+    translateY(-5px);
+
+  background:
+    rgba(212,182,117,0.18);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .footer-container {
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+    gap: 3rem;
+
+  }
+
+
+  .footer-brand {
+
+    grid-column:
+      span 2;
+
+  }
+
+}
+
 
 @media (max-width: 600px) {
-  .social-footer h3 {
-    font-size: 1.25rem;
+
+  .footer-container {
+
+    grid-template-columns:
+      1fr;
+
+    padding:
+      4rem
+      1.5rem
+      2.5rem;
+
+    gap: 2.5rem;
+
   }
+
+
+  .footer-brand {
+
+    grid-column:
+      span 1;
+
+  }
+
+
+  .footer-brand h2 {
+    font-size: 2rem;
+  }
+
+
+  .social-heading {
+    gap: 0.7rem;
+  }
+
+
+  .social-heading p {
+    font-size: 0.6rem;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .social-line {
+    width: 35px;
+  }
+
 
   .social-icons {
-    gap: 1rem;
+    gap: 0.8rem;
   }
+
+
+  .social-icons a {
+    width: 46px;
+
+    height: 46px;
+
+    font-size: 1.15rem;
+  }
+
+
+  .footer-bottom {
+
+    flex-direction: column;
+
+    text-align: center;
+
+    padding:
+      1.5rem
+      1rem;
+
+  }
+
+
+  .footer-made {
+    line-height: 1.6;
+  }
+
 }
 
-.footer-tagline {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #777;
-}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+/* =====================================================
+   REDUCED MOTION ACCESSIBILITY
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    scroll-behavior: auto !important;
+
+    transition: none !important;
+
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
 }
