@@ -11,10 +11,8 @@ import { Navigation, Autoplay } from 'swiper/modules';
 
 /* ================= ASSETS ================= */
 
-// Main Kavya Photo
 import kavyaAbout from '../assets/kavya-new.jpg';
 
-// Service Images
 import mental from '../assets/mental.jpg';
 import fatnfit from '../assets/fatnfit.webp';
 import haircare from '../assets/hair-care.jpeg';
@@ -39,25 +37,33 @@ import motivation from '../assets/motivation.jpg';
 
 const Home = () => {
 
-  /* ================= INITIALIZE AOS ================= */
-
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 80
-    });
-
-    document.documentElement.style.scrollBehavior = 'smooth';
-  }, []);
-
-
   /* ================= STATE ================= */
 
   const [selectedServices, setSelectedServices] = useState([]);
+  const [showWellnessModal, setShowWellnessModal] = useState(false);
 
 
-  /* ================= SERVICES DATA ================= */
+  /* ================= AOS ================= */
+
+  useEffect(() => {
+
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 70,
+      easing: 'ease-out-cubic'
+    });
+
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
+
+  }, []);
+
+
+  /* ================= SERVICES ================= */
 
   const services = [
 
@@ -65,28 +71,28 @@ const Home = () => {
       img: fatnfit,
       title: 'Fat Loss & Fitness',
       text: 'Build sustainable habits that support healthy fat loss, strength and long-term fitness.',
-      timeNote: 'Personalised duration based on your goals'
+      timeNote: 'Personalised to your goals'
     },
 
     {
       img: weightGain,
       title: 'Healthy Weight Gain',
       text: 'A balanced nutrition approach to support healthy weight gain and improved body composition.',
-      timeNote: 'Personalised based on metabolism and goals'
+      timeNote: 'Personalised to your needs'
     },
 
     {
       img: gut,
       title: 'Gut Health',
       text: 'Support better digestion, bowel health and overall gut wellness through personalised nutrition.',
-      timeNote: 'Lifestyle and symptom dependent'
+      timeNote: 'Lifestyle & symptom dependent'
     },
 
     {
       img: liver,
       title: 'Fatty Liver Support',
       text: 'Nutrition and lifestyle guidance designed to support metabolic and liver health.',
-      timeNote: 'Personalised monitoring recommended'
+      timeNote: 'Personalised monitoring'
     },
 
     {
@@ -100,14 +106,14 @@ const Home = () => {
       img: diabetes,
       title: 'Diabetes & PCOS Support',
       text: 'Nutrition guidance focused on blood sugar balance, metabolic health and hormonal wellbeing.',
-      timeNote: 'Personalised support plan'
+      timeNote: 'Personalised support'
     },
 
     {
       img: infertility,
       title: 'Fertility & Hormonal Health',
       text: 'Nutrition support designed around reproductive health, hormone balance and overall wellbeing.',
-      timeNote: 'Individualised based on health history'
+      timeNote: 'Individualised approach'
     },
 
     {
@@ -121,7 +127,7 @@ const Home = () => {
       img: pregnancy,
       title: 'Pregnancy & Postpartum Nutrition',
       text: 'Nourishment strategies designed to support maternal wellbeing through pregnancy and recovery.',
-      timeNote: 'Stage-specific personalised plans'
+      timeNote: 'Stage-specific guidance'
     },
 
     {
@@ -135,14 +141,14 @@ const Home = () => {
       img: skincare,
       title: 'Skin Nutrition',
       text: 'Support skin health from within by improving overall nutrition and lifestyle foundations.',
-      timeNote: 'Individual response may vary'
+      timeNote: 'Individual response varies'
     },
 
     {
       img: haircare,
       title: 'Hair Nutrition',
       text: 'Nutritional strategies that support healthy hair through better nourishment and lifestyle habits.',
-      timeNote: 'Consistent nutrition support recommended'
+      timeNote: 'Consistent support recommended'
     },
 
     {
@@ -155,8 +161,8 @@ const Home = () => {
     {
       img: vegan,
       title: 'Plant-Based Nutrition',
-      text: 'Balanced plant-based meal strategies designed to meet your nutritional requirements.',
-      timeNote: 'Suitable for long-term lifestyle planning'
+      text: 'Balanced plant-based meal strategies designed to help meet your nutritional requirements.',
+      timeNote: 'Long-term lifestyle planning'
     },
 
     {
@@ -170,21 +176,21 @@ const Home = () => {
       img: figure,
       title: 'Body Recomposition',
       text: 'Support strength, body composition and confidence through personalised nutrition strategies.',
-      timeNote: 'Goal and lifestyle dependent'
+      timeNote: 'Goal & lifestyle dependent'
     },
 
     {
       img: respiratory,
       title: 'Respiratory Wellness',
       text: 'Lifestyle and nutrition support to promote overall respiratory and immune wellbeing.',
-      timeNote: 'Personalised based on individual needs'
+      timeNote: 'Personalised to individual needs'
     },
 
     {
       img: cooking,
       title: 'Healthy Cooking',
       text: 'Learn practical cooking strategies that make nutritious eating simple and sustainable.',
-      timeNote: 'Build skills at your own pace'
+      timeNote: 'Learn at your own pace'
     },
 
     {
@@ -198,7 +204,7 @@ const Home = () => {
       img: motivation,
       title: 'Lifestyle & Habit Building',
       text: 'Create sustainable routines that help healthy choices become part of everyday life.',
-      timeNote: 'Designed for long-term consistency'
+      timeNote: 'Built for long-term consistency'
     }
 
   ];
@@ -209,22 +215,26 @@ const Home = () => {
   const serviceGroups = [
 
     {
-      title: 'Metabolic Health & Core Wellness',
+      title: 'Metabolic & Lifestyle Health',
+      subtitle: 'Build stronger foundations for everyday health.',
       services: services.slice(0, 5)
     },
 
     {
       title: 'Women’s Health & Life Stages',
+      subtitle: 'Nutrition support through changing stages of life.',
       services: services.slice(5, 10)
     },
 
     {
       title: 'Targeted Nutrition & Preventive Wellness',
+      subtitle: 'Nourishment strategies for your individual needs.',
       services: services.slice(10, 15)
     },
 
     {
-      title: 'Lifestyle, Vitality & Sustainable Habits',
+      title: 'Vitality & Sustainable Habits',
+      subtitle: 'Practical approaches for long-term wellbeing.',
       services: services.slice(15, 20)
     }
 
@@ -238,9 +248,11 @@ const Home = () => {
     setSelectedServices((previousServices) => {
 
       if (previousServices.includes(title)) {
+
         return previousServices.filter(
           (service) => service !== title
         );
+
       }
 
       return [...previousServices, title];
@@ -254,6 +266,8 @@ const Home = () => {
 
   const handleProceed = () => {
 
+    if (selectedServices.length === 0) return;
+
     const query = selectedServices
       .map(
         (service) =>
@@ -266,12 +280,14 @@ const Home = () => {
   };
 
 
+  /* ================= CLEAR SELECTION ================= */
+
   const clearAllServices = () => {
     setSelectedServices([]);
   };
 
 
-  /* ================= SCROLL TO SERVICES ================= */
+  /* ================= SCROLL ================= */
 
   const scrollToGoals = () => {
 
@@ -284,91 +300,200 @@ const Home = () => {
   };
 
 
+  /* ================= MODAL ================= */
+
+  const openWellnessModal = () => {
+    setShowWellnessModal(true);
+  };
+
+
+  const closeWellnessModal = () => {
+    setShowWellnessModal(false);
+  };
+
+
   return (
 
     <main className="home-container">
 
 
-      {/* ================= HERO SECTION ================= */}
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
       <section className="hero-section">
 
-        <div className="hero-overlay" data-aos="fade-up">
+        <div className="hero-overlay">
 
-          <p className="hero-eyebrow">
-            PERSONALISED NUTRITION • HOLISTIC WELLNESS
-          </p>
+          <div
+            className="hero-content"
+            data-aos="fade-up"
+          >
 
-          <h1>
-            Nourish Better.
-            <br />
-            Live Stronger.
-          </h1>
+            <p className="hero-eyebrow">
+              PERSONALISED NUTRITION • HOLISTIC WELLNESS
+            </p>
 
-          <p className="hero-description">
-            Evidence-informed nutrition guidance designed around
-            your body, lifestyle and long-term wellbeing.
-          </p>
+            <h1>
+              Nourish Better.
+              <br />
+              <span>Live Stronger.</span>
+            </h1>
 
-          <div className="hero-actions">
+            <p className="hero-description">
+              Evidence-informed nutrition guidance designed
+              around your body, lifestyle and long-term wellbeing.
+            </p>
 
-            <button
-              className="hero-primary-btn"
-              onClick={() => window.location.href = '/contact'}
-            >
-              Start Your Wellness Journey
-            </button>
+            <div className="hero-actions">
 
-            <button
-              className="hero-secondary-btn"
-              onClick={scrollToGoals}
-            >
-              Explore Wellness Areas
-            </button>
+              <button
+                className="hero-primary-btn"
+                onClick={() =>
+                  window.location.href = '/contact'
+                }
+              >
+                Start Your Wellness Journey
+                <span>→</span>
+              </button>
 
+              <button
+                className="hero-secondary-btn"
+                onClick={scrollToGoals}
+              >
+                Explore Wellness Areas
+              </button>
+
+            </div>
+
+          </div>
+
+          <div className="hero-scroll-indicator">
+            <span></span>
+            Scroll to explore
           </div>
 
         </div>
 
-        <div className="hero-scroll-indicator">
-          <span></span>
-          <p>SCROLL TO EXPLORE</p>
-        </div>
-
       </section>
 
 
-      {/* ================= TRUST STRIP ================= */}
+      {/* =====================================================
+          TRUST STRIP
+      ===================================================== */}
 
       <section className="trust-strip">
 
         <div className="trust-item">
+
           <span>01</span>
-          <p>Personalised Guidance</p>
+
+          <div>
+            <strong>Personalised</strong>
+            <p>Guidance</p>
+          </div>
+
         </div>
 
         <div className="trust-divider"></div>
 
         <div className="trust-item">
+
           <span>02</span>
-          <p>Sustainable Nutrition</p>
+
+          <div>
+            <strong>Sustainable</strong>
+            <p>Nutrition</p>
+          </div>
+
         </div>
 
         <div className="trust-divider"></div>
 
         <div className="trust-item">
+
           <span>03</span>
-          <p>Whole-Person Wellness</p>
+
+          <div>
+            <strong>Whole-Person</strong>
+            <p>Wellness</p>
+          </div>
+
         </div>
 
       </section>
 
 
-      {/* ================= ABOUT SECTION ================= */}
+      {/* =====================================================
+          ABOUT / KAVYA
+      ===================================================== */}
 
-      <section className="about-section" id="about">
+      <section
+        className="about-section"
+        id="about"
+      >
 
         <div className="about-wrapper">
+
+
+          {/* IMAGE */}
+
+          <div
+            className="about-image-wrapper"
+            data-aos="fade-left"
+            onClick={openWellnessModal}
+            role="button"
+            tabIndex="0"
+            onKeyDown={(event) => {
+
+              if (
+                event.key === 'Enter' ||
+                event.key === ' '
+              ) {
+                openWellnessModal();
+              }
+
+            }}
+            aria-label="Explore personalised wellness approach"
+          >
+
+            <div className="about-image-frame">
+
+              <img
+                src={kavyaAbout}
+                alt="Kavya - Functional Nutritionist"
+                className="about-image"
+              />
+
+            </div>
+
+
+            {/* CLICKABLE BADGE */}
+
+            <button
+              className="about-image-badge"
+              onClick={(event) => {
+
+                event.stopPropagation();
+                openWellnessModal();
+
+              }}
+            >
+
+              <span>Personalised</span>
+
+              <strong>Wellness</strong>
+
+              <small>
+                Discover the approach →
+              </small>
+
+            </button>
+
+          </div>
+
+
+          {/* CONTENT */}
 
           <div
             className="about-content"
@@ -376,14 +501,15 @@ const Home = () => {
           >
 
             <p className="section-label">
-              ABOUT KAVYA
+              MEET KAVYA
             </p>
 
             <h2>
               Nutrition Should Fit
               <br />
-              Your Life.
+              <span>Your Life.</span>
             </h2>
+
 
             <div className="about-intro">
 
@@ -395,76 +521,90 @@ const Home = () => {
               </p>
 
               <p>
-                My approach brings together nutrition science,
-                practical lifestyle strategies and personalised
-                guidance — because lasting wellbeing is never
-                one-size-fits-all.
+                My approach combines nutrition science, practical
+                lifestyle strategies and personalised guidance —
+                because lasting wellbeing is never one-size-fits-all.
               </p>
 
             </div>
 
 
-            <ul className="about-list">
+            <div className="about-highlights">
 
-              <li>
-                <strong>Metabolic Health</strong>
-                <span>
-                  Diabetes, insulin resistance & sustainable
-                  weight management
-                </span>
-              </li>
+              <div className="about-highlight">
 
-              <li>
-                <strong>Women's Wellness</strong>
-                <span>
-                  PCOS, fertility, menopause & life-stage nutrition
-                </span>
-              </li>
+                <span>01</span>
 
-              <li>
-                <strong>Gut & Digestive Health</strong>
-                <span>
-                  Building stronger foundations for overall wellbeing
-                </span>
-              </li>
+                <div>
+                  <strong>Metabolic Health</strong>
 
-              <li>
-                <strong>Healthy Lifestyle Design</strong>
-                <span>
-                  Practical habits that are sustainable in real life
-                </span>
-              </li>
+                  <p>
+                    Diabetes, insulin resistance & sustainable
+                    weight management
+                  </p>
+                </div>
 
-            </ul>
+              </div>
+
+
+              <div className="about-highlight">
+
+                <span>02</span>
+
+                <div>
+                  <strong>Women's Wellness</strong>
+
+                  <p>
+                    PCOS, fertility, menopause & life-stage
+                    nutrition
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div className="about-highlight">
+
+                <span>03</span>
+
+                <div>
+                  <strong>Gut & Digestive Health</strong>
+
+                  <p>
+                    Building stronger foundations for overall
+                    wellbeing
+                  </p>
+                </div>
+
+              </div>
+
+
+              <div className="about-highlight">
+
+                <span>04</span>
+
+                <div>
+                  <strong>Healthy Lifestyle Design</strong>
+
+                  <p>
+                    Practical habits that can work in real life
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
 
 
             <button
               className="about-cta"
-              onClick={() => window.location.href = '/about'}
+              onClick={() =>
+                window.location.href = '/about'
+              }
             >
-              Discover My Approach →
+              Discover My Approach
+              <span>→</span>
             </button>
-
-          </div>
-
-
-          {/* KAVYA IMAGE */}
-
-          <div
-            className="about-image-wrapper"
-            data-aos="fade-left"
-          >
-
-            <img
-              src={kavyaAbout}
-              alt="Kavya - Functional Nutritionist"
-              className="about-image"
-            />
-
-            <div className="about-image-badge">
-              <span>Personalised</span>
-              <strong>Wellness</strong>
-            </div>
 
           </div>
 
@@ -473,7 +613,9 @@ const Home = () => {
       </section>
 
 
-      {/* ================= HOW IT WORKS ================= */}
+      {/* =====================================================
+          HOW IT WORKS
+      ===================================================== */}
 
       <section className="process-section">
 
@@ -489,7 +631,7 @@ const Home = () => {
           <h2>
             A Simpler Way to
             <br />
-            Build Better Health.
+            <span>Build Better Health.</span>
           </h2>
 
           <p>
@@ -507,12 +649,20 @@ const Home = () => {
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            <span>01</span>
+
+            <span className="process-number">
+              01
+            </span>
+
+            <div className="process-line"></div>
+
             <h3>Understand</h3>
+
             <p>
               We begin by understanding your health goals,
               lifestyle, routines and nutritional needs.
             </p>
+
           </div>
 
 
@@ -521,12 +671,20 @@ const Home = () => {
             data-aos="fade-up"
             data-aos-delay="200"
           >
-            <span>02</span>
+
+            <span className="process-number">
+              02
+            </span>
+
+            <div className="process-line"></div>
+
             <h3>Personalise</h3>
+
             <p>
               Your nutrition approach is designed around
               your individual needs and practical lifestyle.
             </p>
+
           </div>
 
 
@@ -535,12 +693,20 @@ const Home = () => {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            <span>03</span>
+
+            <span className="process-number">
+              03
+            </span>
+
+            <div className="process-line"></div>
+
             <h3>Implement</h3>
+
             <p>
-              Build realistic food and lifestyle habits that
-              can work consistently in your everyday life.
+              Build realistic food and lifestyle habits
+              that can work consistently in everyday life.
             </p>
+
           </div>
 
 
@@ -549,12 +715,20 @@ const Home = () => {
             data-aos="fade-up"
             data-aos-delay="400"
           >
-            <span>04</span>
+
+            <span className="process-number">
+              04
+            </span>
+
+            <div className="process-line"></div>
+
             <h3>Transform</h3>
+
             <p>
               Focus on sustainable progress, better awareness
               and long-term health improvements.
             </p>
+
           </div>
 
         </div>
@@ -562,7 +736,9 @@ const Home = () => {
       </section>
 
 
-      {/* ================= SERVICES ================= */}
+      {/* =====================================================
+          SERVICES
+      ===================================================== */}
 
       <section
         className="services-section"
@@ -579,118 +755,168 @@ const Home = () => {
           </p>
 
           <h2>
-            Choose What Matters
+            What Would You Like
             <br />
-            Most to Your Health.
+            <span>to Improve?</span>
           </h2>
 
           <p>
             Explore personalised nutrition and wellness support
-            designed around your unique goals. You can select
-            more than one area.
+            designed around your unique goals.
+            Select one or more areas that matter to you.
           </p>
 
         </div>
 
+
+        {/* SERVICE GROUPS */}
 
         {serviceGroups.map((group, groupIndex) => (
 
           <div
             className="service-group"
             key={group.title}
+            data-aos="fade-up"
           >
 
-            <h3 className="service-section-title">
-              {group.title}
-            </h3>
+            <div className="service-group-heading">
+
+              <div>
+
+                <h3 className="service-section-title">
+                  {group.title}
+                </h3>
+
+                <p>
+                  {group.subtitle}
+                </p>
+
+              </div>
+
+              <span className="service-group-number">
+                0{groupIndex + 1}
+              </span>
+
+            </div>
 
 
             <Swiper
               modules={[Navigation, Autoplay]}
               navigation
               autoplay={{
-                delay: 3500,
+                delay: 3200,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}
               loop={true}
-              spaceBetween={24}
-              slidesPerView={1}
+              spaceBetween={22}
+              slidesPerView={1.15}
+
               breakpoints={{
+
+                480: {
+                  slidesPerView: 1.3
+                },
+
                 640: {
-                  slidesPerView: 1.5
+                  slidesPerView: 1.6
                 },
+
                 768: {
-                  slidesPerView: 2
+                  slidesPerView: 2.2
                 },
+
                 1024: {
                   slidesPerView: 3
                 },
+
                 1280: {
                   slidesPerView: 4
+
                 }
+
               }}
             >
 
-              {group.services.map((item, index) => (
+              {group.services.map((item) => {
 
-                <SwiperSlide key={item.title}>
+                const isSelected =
+                  selectedServices.includes(item.title);
 
-                  <article
-                    className={`service-card ${
-                      selectedServices.includes(item.title)
-                        ? 'selected'
-                        : ''
-                    }`}
-                    data-aos="fade-up"
-                    data-aos-delay={(groupIndex * 100) + (index * 50)}
-                    onClick={() => toggleService(item.title)}
-                  >
+                return (
 
-                    <div className="service-image-wrapper">
+                  <SwiperSlide key={item.title}>
 
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="service-image"
-                      />
+                    <article
+                      className={`service-card ${
+                        isSelected ? 'selected' : ''
+                      }`}
+                      onClick={() =>
+                        toggleService(item.title)
+                      }
+                    >
 
-                    </div>
+                      <div className="service-image-wrapper">
 
+                        <img
+                          src={item.img}
+                          alt={item.title}
+                          className="service-image"
+                        />
 
-                    <div className="service-card-content">
-
-                      <h3>{item.title}</h3>
-
-                      <p>{item.text}</p>
-
-                    </div>
-
-
-                    <div className="service-card-footer">
-
-                      <div className="checkbox">
-
-                        {selectedServices.includes(item.title)
-                          ? '✓ Selected'
-                          : 'Select this area'
-                        }
+                        <div className="service-image-overlay">
+                          <span>
+                            {isSelected
+                              ? '✓ Selected'
+                              : 'Select'
+                            }
+                          </span>
+                        </div>
 
                       </div>
 
-                      {item.timeNote && (
-                        <div className="time-estimate">
+
+                      <div className="service-card-content">
+
+                        <h3>
+                          {item.title}
+                        </h3>
+
+                        <p>
+                          {item.text}
+                        </p>
+
+                      </div>
+
+
+                      <div className="service-card-footer">
+
+                        <span
+                          className={
+                            isSelected
+                              ? 'service-status selected-status'
+                              : 'service-status'
+                          }
+                        >
+                          {isSelected
+                            ? '✓ Added to your priorities'
+                            : '＋ Select this area'
+                          }
+                        </span>
+
+                        <span className="time-estimate">
                           {item.timeNote}
-                        </div>
-                      )}
+                        </span>
 
-                    </div>
+                      </div>
 
-                  </article>
+                    </article>
 
-                </SwiperSlide>
+                  </SwiperSlide>
 
-              ))}
+                );
+
+              })}
 
             </Swiper>
 
@@ -699,12 +925,14 @@ const Home = () => {
         ))}
 
 
-        {/* ================= SELECTED SERVICES ================= */}
+        {/* =====================================================
+            SELECTED SERVICES
+        ===================================================== */}
 
         {selectedServices.length > 0 && (
 
           <div
-            className="proceed-container"
+            className="selection-container"
             data-aos="fade-up"
           >
 
@@ -719,8 +947,10 @@ const Home = () => {
               </h3>
 
               <p>
-                You've selected{' '}
-                <strong>{selectedServices.length}</strong>{' '}
+                You have selected{' '}
+                <strong>
+                  {selectedServices.length}
+                </strong>{' '}
                 wellness area
                 {selectedServices.length > 1 ? 's' : ''}.
               </p>
@@ -739,14 +969,15 @@ const Home = () => {
                     className="selected-service-item"
                   >
 
-                    <span>{service}</span>
+                    <span>
+                      {service}
+                    </span>
 
                     <button
                       className="remove-service-btn"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        toggleService(service);
-                      }}
+                      onClick={() =>
+                        toggleService(service)
+                      }
                       aria-label={`Remove ${service}`}
                     >
                       ×
@@ -759,9 +990,9 @@ const Home = () => {
               </ul>
 
 
-              <p className="total-time">
-                Your selected priorities will be considered
-                when building a personalised wellness approach.
+              <p className="selection-note">
+                These priorities can be shared when you
+                continue to your consultation.
               </p>
 
 
@@ -778,7 +1009,8 @@ const Home = () => {
                   className="proceed-btn"
                   onClick={handleProceed}
                 >
-                  Continue to Consultation →
+                  Continue to Consultation
+                  <span>→</span>
                 </button>
 
               </div>
@@ -792,38 +1024,181 @@ const Home = () => {
       </section>
 
 
-      {/* ================= FINAL CTA ================= */}
+      {/* =====================================================
+          FINAL CTA
+      ===================================================== */}
 
       <section
         className="cta-section"
-        data-aos="zoom-in"
+        data-aos="fade-up"
       >
 
-        <p className="section-label">
-          YOUR HEALTH. YOUR JOURNEY.
-        </p>
+        <div className="cta-inner">
 
-        <h2>
-          Small Changes.
-          <br />
-          Lasting Transformation.
-        </h2>
+          <p className="section-label">
+            YOUR HEALTH. YOUR JOURNEY.
+          </p>
 
-        <p>
-          Your health journey doesn't need another strict diet.
-          It needs an approach that understands your body,
-          fits your lifestyle and helps you build habits
-          you can actually sustain.
-        </p>
+          <h2>
+            Small Changes.
+            <br />
+            <span>Lasting Transformation.</span>
+          </h2>
 
-        <button
-          onClick={() => window.location.href = '/contact'}
-        >
-          Begin Your Journey →
-        </button>
+          <p>
+            Your journey towards better health doesn't require
+            perfection. It starts with understanding your body,
+            making informed choices and building habits that
+            truly work for you.
+          </p>
+
+          <button
+            onClick={() =>
+              window.location.href = '/contact'
+            }
+          >
+            Begin Your Journey
+            <span>→</span>
+          </button>
+
+        </div>
 
       </section>
 
+
+      {/* =====================================================
+          PERSONALISED WELLNESS MODAL
+      ===================================================== */}
+
+      {showWellnessModal && (
+
+        <div
+          className="wellness-modal-overlay"
+          onClick={closeWellnessModal}
+        >
+
+          <div
+            className="wellness-modal"
+            onClick={(event) =>
+              event.stopPropagation()
+            }
+          >
+
+            <button
+              className="wellness-modal-close"
+              onClick={closeWellnessModal}
+              aria-label="Close"
+            >
+              ×
+            </button>
+
+
+            <p className="section-label">
+              THE KAVYA'S NUTRITION APPROACH
+            </p>
+
+            <h2>
+              Personalised
+              <br />
+              Wellness.
+            </h2>
+
+            <p className="wellness-modal-intro">
+              Nutrition should fit your life —
+              not force your life to fit a diet.
+            </p>
+
+            <p className="wellness-modal-text">
+              Every person has different goals, routines,
+              food preferences and lifestyle challenges.
+              My approach begins by understanding you first,
+              then building practical nutrition and lifestyle
+              strategies that can realistically become part
+              of your everyday life.
+            </p>
+
+
+            <div className="wellness-modal-points">
+
+
+              <div>
+
+                <span>01</span>
+
+                <strong>Your Goals</strong>
+
+                <p>
+                  Understanding what you genuinely want
+                  to improve.
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <span>02</span>
+
+                <strong>Your Lifestyle</strong>
+
+                <p>
+                  Creating strategies that work with
+                  your everyday routine.
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <span>03</span>
+
+                <strong>Your Nutrition</strong>
+
+                <p>
+                  Building practical and sustainable
+                  food habits.
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <span>04</span>
+
+                <strong>Your Progress</strong>
+
+                <p>
+                  Focusing on consistency rather
+                  than perfection.
+                </p>
+
+              </div>
+
+
+            </div>
+
+
+            <button
+              className="wellness-modal-btn"
+              onClick={() => {
+
+                closeWellnessModal();
+
+                window.location.href = '/about';
+
+              }}
+            >
+              Discover My Approach
+              <span>→</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </main>
 

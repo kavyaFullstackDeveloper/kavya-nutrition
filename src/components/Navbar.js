@@ -1,107 +1,114 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/knlogo.png';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
+
+import logo from '../assets/knlogo.png';
+
+import './Navbar.css';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const location = useLocation();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const navItems = [
+    {
+      path: '/',
+      label: 'Wellness Hub',
+    },
+    {
+      path: '/about',
+      label: 'Meet Kavya',
+    },
+    {
+      path: '/reviews',
+      label: 'Success Stories',
+    },
+  ];
 
-  const updateMobile = () => setIsMobile(window.innerWidth <= 768);
-
-  useEffect(() => {
-    window.addEventListener('resize', updateMobile);
-    return () => window.removeEventListener('resize', updateMobile);
-  }, []);
-
-  const navStyle = {
-    padding: '1rem 2rem',
-    background: '#c8e6c9',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    position: 'sticky',
-    top: 0,
-    zIndex: 1000,
-    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-    fontFamily: "'Segoe UI', sans-serif",
-  };
-
-  const logoStyle = {
-    height: '50px',
-    objectFit: 'contain',
-  };
-
-  const linkStyle = {
-    textDecoration: 'none',
-    color: '#2e7d32',
-    fontWeight: '600',
-    fontSize: '1.1rem',
-    transition: 'all 0.3s ease-in-out',
-    padding: '0.5rem 1rem',
-    borderRadius: '10px',
-    display: 'block',
-  };
-
-  const menuStyle = {
-    display: isMobile ? (menuOpen ? 'flex' : 'none') : 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
-    gap: isMobile ? '1rem' : '1.5rem',
-    position: isMobile ? 'absolute' : 'static',
-    top: isMobile ? '80px' : 'auto',
-    right: isMobile ? '20px' : 'auto',
-    background: isMobile ? '#c8e6c9' : 'transparent',
-    padding: isMobile ? '1rem' : '0',
-    borderRadius: '10px',
-    boxShadow: isMobile ? '0 4px 12px rgba(0, 0, 0, 0.15)' : 'none',
-  };
-
-  const hamburgerStyle = {
-    display: isMobile ? 'block' : 'none',
-    cursor: 'pointer',
-    color: '#2e7d32',
-  };
-
-  const handleHover = (e, isHovering) => {
-    e.target.style.background = isHovering ? '#a5d6a7' : 'transparent';
-    e.target.style.transform = isHovering ? 'scale(1.05)' : 'scale(1)';
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
   return (
-    <nav style={navStyle}>
-      {/* Logo */}
-      <Link to="/">
-        <img src={logo} alt="Kavya Nutrition" style={logoStyle} />
-      </Link>
+    <header className="navbar">
+      <div className="navbar-container">
 
-      {/* Hamburger / Close icon */}
-      <div onClick={toggleMenu} style={hamburgerStyle}>
-        {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
-      </div>
+        {/* =========================
+            LOGO
+        ========================== */}
+        <Link
+          to="/"
+          className="navbar-logo"
+          onClick={closeMenu}
+          aria-label="Kavya's Nutrition Home"
+        >
+          <img
+            src={logo}
+            alt="Kavya's Nutrition"
+          />
+        </Link>
 
-      {/* Menu Links */}
-      <div className="nav-links" style={menuStyle}>
-        {[
-          { path: '/', label: 'Wellness Hub'},
-          { path: '/about', label: 'Meet Kavya'},
-          { path: '/reviews', label: 'Success Stories'},
-          { path: '/contact', label: 'Book a Session'},
-        ].map(({ path, label }) => (
+
+        {/* =========================
+            DESKTOP / MOBILE NAV
+        ========================== */}
+        <nav
+          className={`nav-links ${menuOpen ? 'open' : ''}`}
+          aria-label="Main navigation"
+        >
+
+          {navItems.map(({ path, label }) => {
+            const isActive = location.pathname === path;
+
+            return (
+              <Link
+                key={path}
+                to={path}
+                className={isActive ? 'nav-link active' : 'nav-link'}
+                onClick={closeMenu}
+              >
+                {label}
+              </Link>
+            );
+          })}
+
+
+          {/* Book Session CTA */}
           <Link
-            key={path}
-            to={path}
-            style={linkStyle}
-            onClick={() => setMenuOpen(false)}
-            onMouseEnter={(e) => handleHover(e, true)}
-            onMouseLeave={(e) => handleHover(e, false)}
+            to="/contact"
+            className={
+              location.pathname === '/contact'
+                ? 'nav-cta active'
+                : 'nav-cta'
+            }
+            onClick={closeMenu}
           >
-            {label}
+            <span>Book a Session</span>
+            <span className="cta-arrow">→</span>
           </Link>
-        ))}
+
+        </nav>
+
+
+        {/* =========================
+            MOBILE MENU BUTTON
+        ========================== */}
+        <button
+          type="button"
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? (
+            <FaTimes />
+          ) : (
+            <FaBars />
+          )}
+        </button>
+
       </div>
-    </nav>
+    </header>
   );
 };
 
