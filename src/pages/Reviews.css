@@ -1,196 +1,936 @@
+/* =========================================================
+   KAVYA'S NUTRITION
+   SUCCESS STORIES / REVIEWS PAGE
+========================================================= */
+
 .reviews-container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  width: 100%;
+  max-width: 1250px;
+
+  margin: 0 auto;
+
+  padding: 4rem 5rem 6rem;
+
+  font-family: "Montserrat", sans-serif;
+
+  color: #26382d;
+
+  background: #fffdf8;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.reviews-header {
+  max-width: 760px;
+
+  margin: 0 auto 4rem;
+
+  text-align: center;
+}
+
+.reviews-eyebrow,
+.section-eyebrow {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  color: #6c8874;
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.17em;
+
+  text-transform: uppercase;
 }
 
 .reviews-title {
+  margin: 0;
+
+  color: #244b35;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(2.5rem, 5vw, 4rem);
+
+  font-weight: 600;
+
+  line-height: 1.1;
+}
+
+.reviews-intro {
+  max-width: 650px;
+
+  margin: 1.2rem auto 0;
+
+  color: #69766d;
+
+  font-size: 0.98rem;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   VIDEO TESTIMONIAL SECTION
+========================================================= */
+
+.video-testimonials {
+  margin-bottom: 5rem;
+}
+
+.video-section-heading {
+  max-width: 700px;
+
+  margin: 0 auto 2.5rem;
+
   text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
-  color: #2c3e50;
 }
 
-.featured-testimonials,
-.all-reviews {
-  margin-top: 2rem;
+.video-section-heading h2,
+.section-heading h2,
+.form-heading h2 {
+  margin: 0;
+
+  color: #244b35;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+
+  font-weight: 600;
+
+  line-height: 1.2;
 }
 
-.testimonial-list,
-.review-list {
+.video-section-heading p {
+  margin: 0.8rem auto 0;
+
+  color: #718077;
+
+  font-size: 0.92rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   VIDEO GRID
+========================================================= */
+
+.testimonial-video-grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 2rem;
 }
 
-.testimonial-card,
-.review-card {
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s;
+
+/* =========================================================
+   VIDEO CARD
+========================================================= */
+
+.testimonial-video-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(40, 86, 61, 0.09);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 28px rgba(35, 65, 45, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.testimonial-card:hover,
-.review-card:hover {
+.testimonial-video-card:hover {
   transform: translateY(-5px);
+
+  box-shadow:
+    0 15px 38px rgba(35, 65, 45, 0.12);
 }
 
-.content {
+
+/* =========================================================
+   RESPONSIVE VIDEO
+========================================================= */
+
+.video-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #eef2ee;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+
+/* =========================================================
+   VIDEO CARD TEXT
+========================================================= */
+
+.video-card-content {
+  padding: 1.15rem 1.25rem 1.3rem;
+}
+
+.video-label {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  color: #8a9a8e;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.14em;
+}
+
+.video-card-content h3 {
+  margin: 0;
+
+  color: #294d3a;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LOGIN / REVIEW ACCESS
+========================================================= */
+
+.review-access {
+  max-width: 900px;
+
+  margin: 0 auto 4rem;
+}
+
+.login-box {
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 2rem;
+
+  padding: 1.5rem 1.7rem;
+
+  background: #f3f7f2;
+
+  border: 1px solid rgba(40, 86, 61, 0.08);
+
+  border-radius: 16px;
+}
+
+.login-content {
+  display: flex;
+
+  align-items: center;
+
   gap: 1rem;
 }
 
-.client-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #ffc107;
-}
+.login-icon {
+  width: 48px;
+  height: 48px;
 
-.name {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 0.2rem;
-}
-
-.review {
-  margin-top: 0.5rem;
-  line-height: 1.4;
-}
-
-.rating {
   display: flex;
-  gap: 2px;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 1.3rem;
+
+  box-shadow:
+    0 4px 12px rgba(30, 60, 45, 0.06);
+}
+
+.login-box h3 {
+  margin: 0 0 0.3rem;
+
+  color: #294d3a;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+}
+
+.login-box p {
+  margin: 0;
+
+  color: #748078;
+
+  font-size: 0.82rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   GOOGLE BUTTON
+========================================================= */
+
+.google-signin,
+.google-signout {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0.75rem 1.15rem;
+
+  border: 1px solid #dfe4df;
+
+  border-radius: 30px;
+
+  background: #ffffff;
+
+  color: #34443a;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.google-signin img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-signin:hover,
+.google-signout:hover {
+  background: #f7faf7;
+
+  border-color: #bfcbbf;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LOGGED USER
+========================================================= */
+
+.logged-user {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding: 1rem 1.3rem;
+
+  background: #f3f7f2;
+
+  border-radius: 14px;
+
+  color: #526158;
+
+  font-size: 0.85rem;
+}
+
+.logged-user strong {
+  color: #294d3a;
+}
+
+
+/* =========================================================
+   REVIEW FORM SECTION
+========================================================= */
+
+.review-form-section {
+  max-width: 900px;
+
+  margin: 0 auto 5rem;
+}
+
+.form-heading {
+  margin-bottom: 1.5rem;
+
+  text-align: center;
 }
 
 .review-form {
-  margin-top: 3rem;
   display: flex;
+
   flex-direction: column;
+
   gap: 1.2rem;
-  background-color: #c3eac1;
+
   padding: 2rem;
-  border-radius: 10px;
+
+  background: #f3f7f2;
+
+  border: 1px solid rgba(40, 86, 61, 0.08);
+
+  border-radius: 18px;
 }
 
-.review-form input[type="text"],
-.review-form textarea,
-.review-form input[type="file"] {
-  padding: 0.75rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  width: 100%;
-}
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
 
 .review-form textarea {
+  width: 100%;
+
+  padding: 1rem;
+
+  border: 1px solid #d9e0da;
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: #34443a;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 0.9rem;
+
+  line-height: 1.6;
+
+  outline: none;
+
   resize: vertical;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
+.review-form textarea:focus {
+  border-color: #78927e;
+
+  box-shadow:
+    0 0 0 3px rgba(120, 146, 126, 0.1);
+}
+
+.review-form textarea::placeholder {
+  color: #9aa59d;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
 
 .rating-input {
   display: flex;
+
   align-items: center;
-  gap: 0.5rem;
+
+  gap: 1rem;
+
   flex-wrap: wrap;
+}
+
+.rating-input label {
+  color: #415248;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.star-selector {
+  display: flex;
+
+  gap: 0.15rem;
+}
+
+.star-button {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  line-height: 1;
+
+  transition: transform 0.2s ease;
+}
+
+.star-button:hover {
+  transform: scale(1.12);
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+.image-upload {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.image-upload label {
+  color: #415248;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.image-upload label span {
+  color: #8b978f;
+
+  font-weight: 400;
+}
+
+.review-form input[type="file"] {
+  width: 100%;
+
+  padding: 0.65rem;
+
+  border: 1px dashed #cbd5cd;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #66736a;
+
+  font-size: 0.8rem;
 }
 
 .image-preview {
   width: 100px;
   height: 100px;
+
   object-fit: cover;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  border: 1px solid #ccc;
+
+  border-radius: 12px;
+
+  border: 2px solid #d7e0d8;
 }
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
 
 .checkbox-label {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
+
+  align-items: flex-start;
+
+  gap: 0.6rem;
+
+  color: #526158;
+
+  font-size: 0.8rem;
+
+  line-height: 1.5;
+
+  cursor: pointer;
 }
+
+.checkbox-label input {
+  margin-top: 3px;
+
+  accent-color: #28563d;
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
 
 .submit-btn {
-  background-color: #27ae60;
-  color: #fff;
-  padding: 0.75rem;
+  width: 100%;
+
+  padding: 0.9rem 1.3rem;
+
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
+
+  border-radius: 30px;
+
+  background: #28563d;
+
+  color: #ffffff;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
   cursor: pointer;
-  transition: background-color 0.3s;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.submit-btn:hover {
-  background-color: #1e8449;
+.submit-btn:hover:not(:disabled) {
+  background: #1f4631;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(40, 86, 61, 0.18);
 }
+
+.submit-btn:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+.featured-testimonials,
+.all-reviews {
+  margin-bottom: 5rem;
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   TESTIMONIAL GRID
+========================================================= */
+
+.testimonial-list,
+.review-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 1.5rem;
+}
+
+
+/* =========================================================
+   REVIEW CARDS
+========================================================= */
+
+.testimonial-card,
+.review-card {
+  padding: 1.5rem;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(40, 86, 61, 0.08);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 7px 25px rgba(35, 65, 45, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover,
+.review-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 30px rgba(35, 65, 45, 0.1);
+}
+
+
+/* =========================================================
+   REVIEW CONTENT
+========================================================= */
+
+.content {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+}
+
+.review-content {
+  flex: 1;
+}
+
+.client-image {
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 2px solid #d4b56b;
+}
+
+.name {
+  margin: 0 0 0.3rem;
+
+  color: #294d3a;
+
+  font-size: 0.95rem;
+
+  font-weight: 700;
+}
+
+.rating {
+  display: flex;
+
+  gap: 3px;
+
+  margin-bottom: 0.55rem;
+}
+
+.review {
+  margin: 0;
+
+  color: #68756c;
+
+  font-size: 0.84rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.spinner {
+  margin: 2rem 0;
+
+  text-align: center;
+
+  color: #718077;
+
+  font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   NO REVIEWS
+========================================================= */
 
 .no-reviews {
-  margin-top: 1.5rem;
+  margin: 2rem auto;
+
+  max-width: 600px;
+
   text-align: center;
+
+  color: #78847c;
+
+  font-size: 0.85rem;
+
   font-style: italic;
-  color: #888;
+
+  line-height: 1.7;
 }
 
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .content {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .reviews-container {
+    padding: 3.5rem 2rem 5rem;
+  }
+
+  .login-box {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+
+    align-items: stretch;
+  }
+
+  .google-signin {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .reviews-container {
+    padding: 3rem 1.2rem 4rem;
+  }
+
+  .reviews-header {
+    margin-bottom: 3rem;
+  }
+
+  .reviews-title {
+    font-size: 2.5rem;
+  }
+
+
+  /* Videos */
+
+  .testimonial-video-grid {
+    grid-template-columns: 1fr;
+
+    gap: 1.5rem;
+  }
+
+
+  /* Review cards */
+
+  .testimonial-list,
+  .review-list {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Login */
+
+  .login-box {
+    padding: 1.3rem;
+  }
+
+  .login-content {
+    align-items: flex-start;
+  }
+
+
+  /* Form */
+
+  .review-form {
+    padding: 1.3rem;
+  }
+
+
+  /* Review content */
+
+  .content {
+    gap: 0.8rem;
   }
 
   .client-image {
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
   }
 
-  .testimonial-card,
-  .review-card {
-    padding: 1rem;
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .reviews-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
-  .review-form {
-    padding: 1.2rem;
+  .reviews-title {
+    font-size: 2.15rem;
   }
-}
-.spinner {
-  text-align: center;
-  font-size: 1.2rem;
-  margin: 20px 0;
-  color: #555;
-}
 
-.google-signin,
-.google-signout {
-  background-color: #fff;
-  color: #444;
-  border: 1px solid #ddd;
-  padding: 10px 16px;
-  font-size: 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-}
+  .reviews-intro {
+    font-size: 0.88rem;
+  }
 
-.google-signin:hover,
-.google-signout:hover {
-  background-color: #f5f5f5;
-  border-color: #bbb;
-}
+  .video-section-heading h2,
+  .section-heading h2,
+  .form-heading h2 {
+    font-size: 1.9rem;
+  }
 
-.google-signin:active,
-.google-signout:active {
-  background-color: #e2e2e2;
+  .login-content {
+    flex-direction: column;
+  }
+
+  .rating-input {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+  }
+
+  .content {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .client-image {
+    width: 62px;
+    height: 62px;
+  }
+
 }

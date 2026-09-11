@@ -1,178 +1,230 @@
 .about-page {
-  padding: 2rem;
+  padding: 3rem 2rem;
   background: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: hidden;
 }
 
-.intro-section h2,
-.card-style h3 {
-  color: #333;
+.intro-section {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.intro-section p {
+.intro-section h2 {
+  color: #005A5B; /* Deep Clinical Teal */
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.clinical-subtitle {
+  font-size: 1.2rem;
+  color: #B76E79; /* Rose Gold / Muted Premium Pink */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.intro-text {
   font-size: 1.1rem;
-  color: #555;
+  color: #444;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .split-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 3rem;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  justify-content: center;
 }
 
 .testimonial-text {
-  flex: 1;
-  min-width: 580px;
-  max-width: 500px;
-  min-height: 290px;
+  flex: 1.2;
+  min-width: 320px;
 }
 
-.testimonial-image-wrapper {
-  flex: 1;
-  min-width: 280px;
-  max-width: 600px;
+.testimonial-text h3 {
+  color: #005A5B;
+  margin-bottom: 1rem;
+}
+
+.testimonial-text p {
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.testimonial-image-wrapper, .branding-image-wrapper {
+  flex: 0.8;
   display: flex;
   justify-content: center;
+  min-width: 280px;
 }
 
-.transformation-image {
+.transformation-image, .profile-recent-image {
   max-width: 100%;
-  margin-bottom: 10px;
   height: auto;
   border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.testimonial-section {
-  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 90, 91, 0.15);
+  border: 2px solid rgba(183, 110, 121, 0.3); /* Rose Gold Accent Border */
 }
 
 .card-style {
-  background: #f6fff6;
-  min-width: 280px;
-  max-width: 600px;
-  padding: 2rem;
+  background: #f4faf9; /* Soft Teal/Mint Clean Background */
+  padding: 2.5rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  flex: 1;
 }
 
-.help-list {
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  color: #444;
-}
-.help-list li {
-  list-style: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-
-.certifications-section li {
-  margin: 0.5rem 0;
-  list-style: none;
-}
-
-.help-list li {
-  margin: 0.5rem 0;
+.card-style h3 {
+  color: #005A5B;
+  border-bottom: 2px solid rgba(183, 110, 121, 0.2);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .sec-1 {
   display: flex;
   flex-direction: row;
-  gap: 90px;
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-.social-icons {
-    color: #333;
+.certifications-section ul, .help-list {
+  list-style: none;
+  padding: 0;
+}
+
+.certifications-section li, .help-list li {
+  margin: 1rem 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Branding & Social Links Area */
+.branding-text {
+  flex: 1.2;
+}
+
+.branding-text h3 {
+  color: #005A5B;
+  margin-bottom: 1rem;
+}
+
+.social-media-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  padding: 10px 16px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #005A5B;
+  font-weight: 500;
+  border: 1px solid rgba(0, 90, 91, 0.2);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #005A5B;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Call to Action Footer */
+.footer-action-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background-color: #f4faf9;
+  padding: 3rem 1rem;
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(183, 110, 121, 0.2);
+}
+
+.footer-action-section h3 {
+  color: #005A5B;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: white;
+}
+
+.email-btn {
+  background: #005A5B;
+  color: white;
 }
 
 /* ------------ RESPONSIVE BREAKPOINTS ------------ */
 
-/* Tablet & medium screen adjustments */
 @media screen and (max-width: 1024px) {
-  .testimonial-text {
-    min-width: unset;
+  .sec-1, .split-section {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .card-style, .testimonial-text {
     max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .intro-section h2 {
+    font-size: 2rem;
   }
 
   .card-style {
     padding: 1.5rem;
   }
 
-  .sec-1 {
-    flex-direction: column;
-    gap: 40px;
+  .social-media-grid {
+    justify-content: center;
   }
-}
-
-/* Mobile devices - phones & small tablets */
-@media screen and (max-width: 768px) {
-  .split-section {
-    flex-direction: column;
-  }
-
-  .testimonial-text,
-  .testimonial-image-wrapper {
-    max-width: 100%;
-    min-width: unset;
-  }
-
-  .intro-section p {
-    font-size: 1rem;
-  }
-
-  .card-style {
-    padding: 1.2rem;
-  }
-}
-
-/* Small phones and extra small devices */
-@media screen and (max-width: 480px) {
-  .about-page {
-    padding: 1rem;
-  }
-
-  .card-style {
-    padding: 1rem;
-    font-size: 0.95rem;
-  }
-
-  .social-icons a,
-  .social-icons .icons-row a {
-    font-size: 20px;
-    margin: 0 8px;
-  }
-}
-
-.services-helped{
-  width: 100%;
-  background-color: #f0fff5;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: 2rem;
-}
-.services-helped h3 {
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.services-helped .social-icons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  max-width: 100%;
-}
-
-.services-helped {
-  width: 100vw; /* full viewport width */
-  margin-left: calc(-1 * ((100vw - 100%) / 2)); /* cancel body padding */
-  background-color: #f0fff5;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: 2rem;
 }

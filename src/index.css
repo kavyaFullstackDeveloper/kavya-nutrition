@@ -1,7 +1,60 @@
+/* =========================
+   GLOBAL WEBSITE STYLES
+========================= */
 
-*{
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+
+  background: #fffdf8;
+  color: #26382d;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* Elegant display headings */
+
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
+}
+
+
+/* Better selection */
+
+::selection {
+  background: #dce9df;
+  color: #1f4631;
+}

@@ -599,7 +599,7 @@ const Home = () => {
             <button
               className="about-cta"
               onClick={() =>
-                window.location.href = '/about'
+                window.location.href = '/contact'
               }
             >
               Discover My Approach
@@ -1186,7 +1186,7 @@ const Home = () => {
 
                 closeWellnessModal();
 
-                window.location.href = '/about';
+                window.location.href = '/contact';
 
               }}
             >

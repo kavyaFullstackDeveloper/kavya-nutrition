@@ -1,16 +1,87 @@
 import React, { useState, useEffect } from 'react';
-import { FaStar, FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaStar,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTwitter,
+  FaFacebook,
+  FaEnvelope,
+  FaWhatsapp
+} from 'react-icons/fa';
+
 import './Reviews.css';
+
 import { auth, provider, db, storage } from '../firebase.js';
-import { signInWithPopup, onAuthStateChanged, signOut } from 'firebase/auth';
-import { addDoc, collection, getDocs, serverTimestamp, query, orderBy } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import {v4} from "uuid";
+
+import {
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+} from 'firebase/auth';
+
+import {
+  addDoc,
+  collection,
+  getDocs,
+  serverTimestamp,
+  query,
+  orderBy
+} from 'firebase/firestore';
+
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from 'firebase/storage';
+
+import { v4 as uuidv4 } from 'uuid';
+
+
+/* =========================================================
+   YOUTUBE TESTIMONIAL VIDEOS
+
+   Future lo new video add cheyyali ante:
+   {
+     id: 'YOUTUBE_VIDEO_ID',
+     title: 'Your Video Title'
+   }
+
+   That's all.
+========================================================= */
+
+const testimonialVideos = [
+  {
+    id: '0fyEsfsoQgI',
+    title: 'Client Transformation Story',
+  },
+  {
+    id: 'wzlBQvSL5Gs',
+    title: 'Client Wellness Journey',
+  },
+  {
+    id: 'd2w5D0PhFFM',
+    title: 'Client Success Story',
+  },
+  {
+    id: 'bF2D7n0JCoc',
+    title: 'Client Testimonial',
+  },
+];
+
 
 const Reviews = () => {
+
+  /* =========================================================
+     STATE
+  ========================================================= */
+
   const [user, setUser] = useState(null);
+
   const [reviews, setReviews] = useState([]);
+
   const [loading, setLoading] = useState(false);
+
   const [fetching, setFetching] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -22,108 +93,278 @@ const Reviews = () => {
     imagePreview: null,
   });
 
+
+  /* =========================================================
+     AUTH STATE
+  ========================================================= */
+
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        setUser(currentUser);
+      }
+    );
+
+    return () => unsubscribe();
+
   }, []);
+
+
+  /* =========================================================
+     FETCH REVIEWS
+  ========================================================= */
 
   useEffect(() => {
     fetchReviews();
   }, []);
 
+
   const fetchReviews = async () => {
+
     setFetching(true);
+
     try {
-      const q = query(collection(db, 'review'), orderBy('createdAt', 'desc'));
+
+      const q = query(
+        collection(db, 'review'),
+        orderBy('createdAt', 'desc')
+      );
+
       const snapshot = await getDocs(q);
-      const data = snapshot.docs.map(doc => doc.data());
+
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
       setReviews(data);
+
     } catch (error) {
-      console.error("Error fetching reviews:", error);
+
+      console.error(
+        'Error fetching reviews:',
+        error
+      );
+
     } finally {
+
       setFetching(false);
+
     }
   };
+
+
+  /* =========================================================
+     GOOGLE LOGIN
+  ========================================================= */
 
   const handleLogin = async () => {
+
     try {
-      const result = await signInWithPopup(auth, provider);
+
+      const result = await signInWithPopup(
+        auth,
+        provider
+      );
+
       setUser(result.user);
+
     } catch (error) {
-      console.error('Login failed:', error);
+
+      console.error(
+        'Login failed:',
+        error
+      );
+
     }
   };
+
+
+  /* =========================================================
+     LOGOUT
+  ========================================================= */
 
   const handleLogout = () => {
+
     signOut(auth)
       .then(() => setUser(null))
-      .catch((error) => console.error('Logout error:', error));
+      .catch((error) => {
+        console.error(
+          'Logout error:',
+          error
+        );
+      });
+
   };
+
+
+  /* =========================================================
+     FORM CHANGE
+  ========================================================= */
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value,
-    });
+
+    const {
+      name,
+      value,
+      type,
+      checked
+    } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]:
+        type === 'checkbox'
+          ? checked
+          : value,
+    }));
+
   };
+
+
+  /* =========================================================
+     STAR RATING
+  ========================================================= */
 
   const handleRating = (ratingValue) => {
-    setFormData({ ...formData, rating: ratingValue });
+
+    setFormData((prev) => ({
+      ...prev,
+      rating: ratingValue,
+    }));
+
   };
+
+
+  /* =========================================================
+     IMAGE UPLOAD
+  ========================================================= */
 
   const handleImageChange = (e) => {
+
     const file = e.target.files[0];
-    if (file) {
-      setFormData({
-        ...formData,
-        image: file,
-        imagePreview: URL.createObjectURL(file),
-      });
-    }
+
+    if (!file) return;
+
+    setFormData((prev) => ({
+      ...prev,
+      image: file,
+      imagePreview:
+        URL.createObjectURL(file),
+    }));
+
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { review, rating, isTestimonial, image } = formData;
 
-    if (!user || !review || rating < 1) {
-      return alert('Please fill all required fields');
+  /* =========================================================
+     SUBMIT REVIEW
+  ========================================================= */
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    const {
+      review,
+      rating,
+      isTestimonial,
+      image
+    } = formData;
+
+
+    if (
+      !user ||
+      !review.trim() ||
+      rating < 1
+    ) {
+
+      alert(
+        'Please fill all required fields'
+      );
+
+      return;
     }
 
+
     setLoading(true);
+
+
     try {
+
       let imageUrl = '';
 
- if (image) {
-  const safeFileName = image.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
-  const path = `review/${v4()}`;
-  
 
-  const imageRef = ref(storage, path); // 🔥 THIS MUST BE A STRING
+      /* -----------------------------------------
+         UPLOAD IMAGE
+      ----------------------------------------- */
 
-  await uploadBytes(imageRef, image);
-  imageUrl = await getDownloadURL(imageRef);
-}
+      if (image) {
+
+        const safeFileName =
+          image.name.replace(
+            /[^a-zA-Z0-9.\-_]/g,
+            '_'
+          );
+
+        const path =
+          `review/${uuidv4()}-${safeFileName}`;
+
+        const imageRef =
+          ref(storage, path);
+
+        await uploadBytes(
+          imageRef,
+          image
+        );
+
+        imageUrl =
+          await getDownloadURL(
+            imageRef
+          );
+      }
 
 
+      /* -----------------------------------------
+         SAVE REVIEW
+      ----------------------------------------- */
 
-      await addDoc(collection(db, 'review'), {
-        name: user.displayName,
-        email: user.email,
-        review,
-        rating,
-        imageUrl,
-        isTestimonial,
-        createdAt: serverTimestamp(),
-      });
+      await addDoc(
+        collection(db, 'review'),
+        {
+          name: user.displayName,
+          email: user.email,
+          review: review.trim(),
+          rating: Number(rating),
+          imageUrl,
+          isTestimonial,
+          createdAt: serverTimestamp(),
+        }
+      );
 
-      alert('✅ Review submitted!');
+
+      alert(
+        '✅ Review submitted successfully!'
+      );
+
+
+      /* -----------------------------------------
+         CLEAN PREVIEW
+      ----------------------------------------- */
 
       if (formData.imagePreview) {
-        URL.revokeObjectURL(formData.imagePreview);
+
+        URL.revokeObjectURL(
+          formData.imagePreview
+        );
+
       }
+
+
+      /* -----------------------------------------
+         RESET FORM
+      ----------------------------------------- */
 
       setFormData({
         name: '',
@@ -134,147 +375,581 @@ const Reviews = () => {
         imagePreview: null,
       });
 
+
+      /* -----------------------------------------
+         REFRESH REVIEWS
+      ----------------------------------------- */
+
       fetchReviews();
+
+
     } catch (error) {
-      console.error('Error submitting review:', error);
-      alert('❌ Upload failed. See console for details.');
+
+      console.error(
+        'Error submitting review:',
+        error
+      );
+
+      alert(
+        '❌ Upload failed. Please try again.'
+      );
+
     } finally {
+
       setLoading(false);
+
     }
   };
 
-   
+
+  /* =========================================================
+     FILTER REVIEWS
+  ========================================================= */
+
+  const testimonials =
+    reviews.filter(
+      (review) =>
+        review.isTestimonial
+    );
+
+  const clientReviews =
+    reviews.filter(
+      (review) =>
+        !review.isTestimonial
+    );
 
 
-  const testimonials = reviews.filter(r => r.isTestimonial);
-  const clientReviews = reviews.filter(r => !r.isTestimonial);
+  /* =========================================================
+     RENDER
+  ========================================================= */
 
   return (
-    <div className="reviews-container">
-      <h2 className="reviews-title">Client Reviews & Testimonials 💬</h2>
 
-      {/* 🔐 AUTH BUTTONS */}
-      <div style={{ textAlign: 'right', marginBottom: '1rem' }}>
+    <div className="reviews-container">
+
+
+      {/* =====================================================
+          PAGE HEADER
+      ===================================================== */}
+
+      <header className="reviews-header">
+
+        <span className="reviews-eyebrow">
+          REAL STORIES • REAL JOURNEYS
+        </span>
+
+        <h1 className="reviews-title">
+          Success Stories
+        </h1>
+
+        <p className="reviews-intro">
+          Every health journey is unique.
+          Hear from people who chose to
+          make their health a priority.
+        </p>
+
+      </header>
+
+
+      {/* =====================================================
+          VIDEO TESTIMONIALS
+      ===================================================== */}
+
+      <section className="video-testimonials">
+
+        <div className="video-section-heading">
+
+          <span className="section-eyebrow">
+            VIDEO TESTIMONIALS
+          </span>
+
+          <h2>
+            Hear It From My Clients
+          </h2>
+
+          <p>
+            Real experiences, honest journeys,
+            and stories of meaningful change.
+          </p>
+
+        </div>
+
+
+        <div className="testimonial-video-grid">
+
+          {testimonialVideos.map(
+            (video) => (
+
+              <article
+                className="testimonial-video-card"
+                key={video.id}
+              >
+
+                <div className="video-wrapper">
+
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+
+                </div>
+
+
+                <div className="video-card-content">
+
+                  <span className="video-label">
+                    CLIENT STORY
+                  </span>
+
+                  <h3>
+                    {video.title}
+                  </h3>
+
+                </div>
+
+              </article>
+
+            )
+          )}
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          AUTH / REVIEW ACCESS
+      ===================================================== */}
+
+      <section className="review-access">
+
         {!user ? (
-          <>
-            <p style={{ textAlign: 'left', fontStyle: 'italic', marginBottom: '0.5rem' }}>
-              Please <strong>sign in</strong> to submit your review 💬
-            </p>
-            <button onClick={handleLogin} className="google-signin">
+
+          <div className="login-box">
+
+            <div className="login-content">
+
+              <span className="login-icon">
+                💬
+              </span>
+
+              <div>
+
+                <h3>
+                  Have you worked with me?
+                </h3>
+
+                <p>
+                  Your experience could inspire
+                  someone else on their wellness journey.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <button
+              onClick={handleLogin}
+              className="google-signin"
+            >
+
               <img
                 src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                 alt="Google"
-                style={{ width: '20px', height: '20px', marginRight: '8px' }}
               />
-              Sign in with Google to give a review
+
+              Sign in with Google to share your story
+
             </button>
-          </>
+
+          </div>
+
         ) : (
-          <div>
-            <span>👤 {user.displayName}</span>
-            <button onClick={handleLogout} className="google-signout" style={{ marginLeft: '10px' }}>
+
+          <div className="logged-user">
+
+            <span>
+              👋 Welcome, <strong>{user.displayName}</strong>
+            </span>
+
+            <button
+              onClick={handleLogout}
+              className="google-signout"
+            >
               Sign Out
             </button>
+
           </div>
+
         )}
-      </div>
 
-      {/* 📝 FORM */}
+      </section>
+
+
+      {/* =====================================================
+          REVIEW FORM
+      ===================================================== */}
+
       {user && (
-        <form onSubmit={handleSubmit} className="review-form">
-          <p>Welcome, {user.displayName}</p>
-          <textarea
-            name="review"
-            placeholder="Your Review"
-            value={formData.review}
-            onChange={handleChange}
-            rows="4"
-            required
-          />
-          <div className="rating-input">
-            <label>Your Rating:</label>
-            {[1, 2, 3, 4, 5].map((val) => (
-              <FaStar
-                key={val}
-                size={24}
-                color={val <= formData.rating ? '#ffc107' : '#e4e5e9'}
-                onClick={() => handleRating(val)}
-                style={{ cursor: 'pointer' }}
-              />
-            ))}
+
+        <section className="review-form-section">
+
+          <div className="form-heading">
+
+            <span className="section-eyebrow">
+              SHARE YOUR EXPERIENCE
+            </span>
+
+            <h2>
+              Tell Us About Your Journey
+            </h2>
+
           </div>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {formData.imagePreview && <img src={formData.imagePreview} alt="Preview" className="image-preview" />}
-          <label className="checkbox-label">
-            <input
-              type="checkbox"
-              name="isTestimonial"
-              checked={formData.isTestimonial}
+
+
+          <form
+            onSubmit={handleSubmit}
+            className="review-form"
+          >
+
+            <textarea
+              name="review"
+              placeholder="Tell us about your experience..."
+              value={formData.review}
               onChange={handleChange}
+              rows="5"
+              required
             />
-            <span>Mark as Testimonial 🌟</span>
-          </label>
-          <button type="submit" className="submit-btn" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Review'}
-          </button>
-        </form>
-      )}
 
-      
-      {fetching && <p style={{ textAlign: 'center' }}>⏳ Loading reviews...</p>}
 
-    
-      {testimonials.length > 0 && (
-        <div className="featured-testimonials">
-          <h3>🌟 Featured Testimonials</h3>
-          <div className="testimonial-list">
-            {testimonials.map((r, index) => (
-              <div key={index} className="testimonial-card">
-                <div className="content">
-                  {r.imageUrl && <img src={r.imageUrl} alt="Client" className="client-image" />}
-                  <div>
-                    <p className="name">{r.name}</p>
-                    <div className="rating">
-                      {[1, 2, 3, 4, 5].map((val) => (
-                        <FaStar key={val} size={16} color={val <= r.rating ? '#ffc107' : '#e4e5e9'} />
-                      ))}
-                    </div>
-                    <p className="review">{r.review}</p>
-                  </div>
-                </div>
+            {/* RATING */}
+
+            <div className="rating-input">
+
+              <label>
+                Your Rating
+              </label>
+
+              <div className="star-selector">
+
+                {[1, 2, 3, 4, 5].map(
+                  (value) => (
+
+                    <button
+                      key={value}
+                      type="button"
+                      className="star-button"
+                      onClick={() =>
+                        handleRating(value)
+                      }
+                      aria-label={`${value} star rating`}
+                    >
+
+                      <FaStar
+                        size={25}
+                        color={
+                          value <= formData.rating
+                            ? '#c89b3c'
+                            : '#d9ddd9'
+                        }
+                      />
+
+                    </button>
+
+                  )
+                )}
+
               </div>
-            ))}
-          </div>
-        </div>
-      )}
 
-      
-      {clientReviews.length > 0 ? (
-        <div className="all-reviews">
-          <h3>All Reviews</h3>
-          {clientReviews.map((r, index) => (
-            <div key={index} className="review-card">
-              <div className="content">
-                {r.imageUrl && <img src={r.imageUrl} alt="Client" className="client-image" />}
-                <div>
-                  <p className="name">{r.name}</p>
-                  <div className="rating">
-                    {[1, 2, 3, 4, 5].map((val) => (
-                      <FaStar key={val} size={16} color={val <= r.rating ? '#ffc107' : '#e4e5e9'} />
-                    ))}
-                  </div>
-                  <p className="review">{r.review}</p>
-                </div>
-              </div>
             </div>
-          ))}
+
+
+            {/* IMAGE */}
+
+            <div className="image-upload">
+
+              <label>
+                Add a photo <span>(optional)</span>
+              </label>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+
+            </div>
+
+
+            {formData.imagePreview && (
+
+              <img
+                src={formData.imagePreview}
+                alt="Review preview"
+                className="image-preview"
+              />
+
+            )}
+
+
+            {/* TESTIMONIAL */}
+
+            <label className="checkbox-label">
+
+              <input
+                type="checkbox"
+                name="isTestimonial"
+                checked={
+                  formData.isTestimonial
+                }
+                onChange={handleChange}
+              />
+
+              <span>
+                I'd like my review to be considered
+                as a featured testimonial 🌟
+              </span>
+
+            </label>
+
+
+            {/* SUBMIT */}
+
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={loading}
+            >
+
+              {loading
+                ? 'Submitting...'
+                : 'Share My Experience →'}
+
+            </button>
+
+          </form>
+
+        </section>
+
+      )}
+
+
+      {/* =====================================================
+          LOADING
+      ===================================================== */}
+
+      {fetching && (
+
+        <div className="spinner">
+          <span>Loading client stories...</span>
         </div>
+
+      )}
+
+
+      {/* =====================================================
+          FEATURED TESTIMONIALS
+      ===================================================== */}
+
+      {testimonials.length > 0 && (
+
+        <section className="featured-testimonials">
+
+          <div className="section-heading">
+
+            <span className="section-eyebrow">
+              CLIENT EXPERIENCES
+            </span>
+
+            <h2>
+              Words That Mean the Most
+            </h2>
+
+          </div>
+
+
+          <div className="testimonial-list">
+
+            {testimonials.map(
+              (review) => (
+
+                <article
+                  key={review.id}
+                  className="testimonial-card"
+                >
+
+                  <div className="content">
+
+                    {review.imageUrl && (
+
+                      <img
+                        src={review.imageUrl}
+                        alt={`${review.name}'s testimonial`}
+                        className="client-image"
+                      />
+
+                    )}
+
+
+                    <div className="review-content">
+
+                      <p className="name">
+                        {review.name}
+                      </p>
+
+
+                      <div className="rating">
+
+                        {[1, 2, 3, 4, 5].map(
+                          (value) => (
+
+                            <FaStar
+                              key={value}
+                              size={15}
+                              color={
+                                value <= review.rating
+                                  ? '#c89b3c'
+                                  : '#e1e4e1'
+                              }
+                            />
+
+                          )
+                        )}
+
+                      </div>
+
+
+                      <p className="review">
+                        "{review.review}"
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              )
+            )}
+
+          </div>
+
+        </section>
+
+      )}
+
+
+      {/* =====================================================
+          ALL REVIEWS
+      ===================================================== */}
+
+      {clientReviews.length > 0 ? (
+
+        <section className="all-reviews">
+
+          <div className="section-heading">
+
+            <span className="section-eyebrow">
+              MORE CLIENT STORIES
+            </span>
+
+            <h2>
+              All Reviews
+            </h2>
+
+          </div>
+
+
+          <div className="review-list">
+
+            {clientReviews.map(
+              (review) => (
+
+                <article
+                  key={review.id}
+                  className="review-card"
+                >
+
+                  <div className="content">
+
+                    {review.imageUrl && (
+
+                      <img
+                        src={review.imageUrl}
+                        alt={`${review.name}'s review`}
+                        className="client-image"
+                      />
+
+                    )}
+
+
+                    <div className="review-content">
+
+                      <p className="name">
+                        {review.name}
+                      </p>
+
+
+                      <div className="rating">
+
+                        {[1, 2, 3, 4, 5].map(
+                          (value) => (
+
+                            <FaStar
+                              key={value}
+                              size={15}
+                              color={
+                                value <= review.rating
+                                  ? '#c89b3c'
+                                  : '#e1e4e1'
+                              }
+                            />
+
+                          )
+                        )}
+
+                      </div>
+
+
+                      <p className="review">
+                        "{review.review}"
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              )
+            )}
+
+          </div>
+
+        </section>
+
       ) : (
-        !fetching && <p className="no-reviews">💌Your story can inspire many — share your review and make a difference 💬🌟</p>
+
+        !fetching && (
+
+          <p className="no-reviews">
+            Your story can inspire many —
+            share your experience and make a difference. 💚
+          </p>
+
+        )
+
       )}
 
     </div>
+
   );
 };
+
 
 export default Reviews;
