@@ -1,107 +1,433 @@
-import React, { useEffect } from 'react'; 
-import './About.css'; 
-import AOS from 'aos'; 
-import 'aos/dist/aos.css'; 
- 
-import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter, FaFacebook, FaEnvelope, FaWhatsapp } from 'react-icons/fa'; 
- 
-import beforeAfterImg from '../assets/kavyatestimony.png'; 
-import profileImg from '../assets/kavyaprofile.png'; // Add your recent professional/clinical image here
- 
-const About = () => { 
-  useEffect(() => { 
-    AOS.init({ duration: 1000, once: true }); 
-  }, []); 
- 
-  return ( 
-    <div className="about-page"> 
-      <section className="intro-section" data-aos="fade-down"> 
-        <h2>Meet Kavya Yadla 💚</h2> 
-        <p className="clinical-subtitle">M.Sc · PGD Clinical Nutrition (P) | Clinical Wellness Consultant</p>
-        <p className="intro-text"> 
-          Applying precise mathematical logic and clinical physics definitions to human metabolism. 
-          With over 2 years of hands-on wellness experience, I bridge the gap between rigorous 
-          biochemical science and practical, everyday nutrition.
-        </p> 
-      </section> 
- 
-      <section className="testimonial-section split-section" data-aos="fade-up"> 
-        <div className="testimonial-text card-style" data-aos="fade-right" data-aos-delay="200"> 
-          <h3>✨ My Transformation Story</h3> 
-          <p> 
-            After my delivery, I struggled with postpartum weight retention, severe hormonal imbalances, and metabolic fatigue. 
-            By designing and applying my own evidence-based scientific protocols, I successfully reversed my PMOS (Polyendocrine Metabolic Ovarian Syndrome), 
-            achieved targeted fat loss with 100% muscle preservation, and completely restored my metabolic health.
-          </p> 
-          <p> 
-            This personal victory redefined my professional trajectory. I transitioned from corporate physics to the frontlines of clinical wellness. 
-            I understand exactly how frustrating it is when standard diets fail. That is why I design custom, metabolic-rate driven protocols 
-            rooted in thermodynamic balance to help women reclaim their health and confidence.
-          </p> 
-        </div> 
-        <div className="testimonial-image-wrapper" data-aos="fade-left" data-aos-delay="400"> 
-          <img src={beforeAfterImg} alt="Before and After Kavya" className="transformation-image" /> 
-        </div> 
-      </section> 
- 
-      <section className="sec-1"> 
-        <section className="certifications-section card-style" data-aos="fade-up" data-aos-delay="200"> 
-          <h3>🎓 Academic & Clinical Credentials</h3> 
-          <ul> 
-            <li>🔬 <strong>Post Graduate Diploma in Clinical Nutrition (P)</strong> – IGMPI (Enrollment No: PGCCN 2939)</li> 
-            <li>📚 <strong>Master of Science (M.Sc)</strong> – Expertise in Condensed Matter Physics (Applying thermodynamic models to metabolic pathways)</li> 
-            <li>🎖️ <strong>2+ Years of Active Clinical Wellness Experience</strong> – Directly mentoring clients globally</li> 
-            <li>🤝 <strong>Certified Functional Nutritionist</strong> & Peer-vetted by the Wellsense Community</li> 
-            <li>📈 <strong>Data-Driven Methodology</strong> – Specializing in 100% Muscle Preservation and safe 350 kcal metabolic deficit models</li> 
-          </ul> 
-        </section> 
- 
-        <section className="services-helped card-style" data-aos="fade-up" data-aos-delay="300"> 
-          <h3>Clinical Focus & Expertise 🌿</h3> 
-          <p>Customized, thermodynamic-based solutions for:</p> 
-          <ul className="help-list"> 
-            <li>✔️ PMOS / PCOS & Hormonal Mapping</li> 
-            <li>✔️ Safe Diabetes Reversal & HbA1c Management</li> 
-            <li>✔️ Postpartum Recovery & Lactation Nutrition</li> 
-            <li>✔️ Non-Crash Weight Management (Fat Loss with Muscle Retention)</li> 
-            <li>✔️ Figure Correction & Structural Anti-aging Nutrition</li> 
-            <li>✔️ Gut Health Optimization & Clinical Vegan Diets</li> 
-            <li>✔️ Cardio-Respiratory & Hepatic Therapeutic Support</li> 
-          </ul> 
-        </section> 
-      </section> 
+import React, { useEffect } from 'react';
+import './About.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-      {/* Profile Highlight Section with Recent Image */}
-      <section className="branding-highlight split-section" data-aos="fade-up">
-        <div className="branding-image-wrapper" data-aos="fade-right">
-          <img src={profileImg} alt="Kavya Yadla Professional" className="profile-recent-image" />
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaFacebook,
+  FaWhatsapp,
+  FaArrowRight
+} from 'react-icons/fa';
+
+import { Link } from 'react-router-dom';
+
+import beforeAfterImg from '../assets/kavyatestimony.png';
+import profileImg from '../assets/kavyaprofile.png';
+
+const About = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 750,
+      once: true,
+      offset: 60
+    });
+  }, []);
+
+  return (
+    <main className="about-page">
+
+      {/* ================= INTRO ================= */}
+      <section className="about-intro" data-aos="fade-up">
+
+        <span className="about-eyebrow">
+          MEET KAVYA
+        </span>
+
+        <h1>
+          Science in the background.
+          <br />
+          <em>Practical nutrition in real life.</em>
+        </h1>
+
+        <p>
+          I’m Kavya Yadla — a nutrition and wellness professional with
+          a background in M.Sc Physics and hands-on experience in
+          personalised wellness coaching.
+        </p>
+
+        <div className="intro-line">
+          <span></span>
+          <small>
+            M.Sc · PGD Clinical Nutrition (P)
+          </small>
+          <span></span>
         </div>
-        <div className="branding-text" data-aos="fade-left">
-          <h3>Let's Connect & Transform Together 🚀</h3>
-          <p>
-            I actively publish clinical breakdowns, daily mindset shifts, and evidence-based nutrition guides across all social platforms. 
-            Follow <strong>@kavyasnutrition</strong> to kickstart your sustainable wellness journey.
-          </p>
-          <div className="social-media-grid">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social-link"><FaInstagram /> Instagram</a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="social-link"><FaLinkedin /> LinkedIn</a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social-link"><FaYoutube /> YouTube</a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social-link"><FaFacebook /> Facebook</a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social-link"><FaTwitter /> X (Twitter)</a>
-          </div>
-        </div>
+
       </section>
 
-      {/* Action Footer */}
-      <footer className="footer-action-section">
-        <h3>Ready for your 8-Week Transformation?</h3>
-        <div className="footer-buttons">
-          <a href="https://wa.me" target="_blank" rel="noreferrer" className="action-btn whatsapp-btn"><FaWhatsapp /> Consult via WhatsApp</a>
-          <a href="mailto:youremail@gmail.com" className="action-btn email-btn"><FaEnvelope /> Email Enquiries</a>
+
+      {/* ================= PROFILE ================= */}
+      <section className="about-profile" data-aos="fade-up">
+
+        <div className="profile-image-column">
+
+          <div className="profile-image-frame">
+            <img
+              src={profileImg}
+              alt="Kavya Yadla - Nutrition and Wellness"
+            />
+          </div>
+
+          <div className="image-caption">
+            <span>FOOD</span>
+            <i>•</i>
+            <span>WELLNESS</span>
+            <i>•</i>
+            <span>LIFESTYLE</span>
+          </div>
+
         </div>
-      </footer>
-    </div> 
-  ); 
-}; 
- 
+
+
+        <div className="profile-content">
+
+          <span className="section-label">
+            MY APPROACH
+          </span>
+
+          <h2>
+            A science-led approach,
+            <br />
+            <em>with a human touch.</em>
+          </h2>
+
+          <p>
+            My journey began with science and education and gradually
+            grew into a deeper interest in nutrition, metabolism and
+            everyday wellness.
+          </p>
+
+          <p>
+            Today, through Kavya’s Nutrition, I focus on making nutrition
+            easier to understand and easier to follow — with practical
+            food choices, personalised guidance and sustainable habits.
+          </p>
+
+          <p>
+            Because a healthy plan should fit into your life,
+            not make your life revolve around the plan.
+          </p>
+
+          <div className="profile-stats">
+
+            <div>
+              <strong>M.Sc</strong>
+              <span>Physics</span>
+            </div>
+
+            <div>
+              <strong>PGD</strong>
+              <span>Clinical Nutrition (P)</span>
+            </div>
+
+            <div>
+              <strong>2+</strong>
+              <span>Years Wellness Experience</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= PERSONAL STORY ================= */}
+      <section className="story-section" data-aos="fade-up">
+
+        <div className="story-content">
+
+          <span className="section-label">
+            WHY I DO THIS
+          </span>
+
+          <h2>
+            My own journey changed
+            <br />
+            <em>the way I see nutrition.</em>
+          </h2>
+
+          <p>
+            Like many people, my relationship with health became more
+            personal after pregnancy and motherhood. Understanding my
+            own body, food choices and lifestyle helped me realise that
+            nutrition is not about following a perfect diet.
+          </p>
+
+          <p>
+            It is about understanding what your body needs, making
+            realistic choices and building habits that you can continue
+            long after a diet plan ends.
+          </p>
+
+          <div className="story-note">
+            <span className="note-mark">“</span>
+            <p>
+              Healthy eating does not have to be complicated.
+              It just needs to make sense for you.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div className="story-image">
+
+          <img
+            src={beforeAfterImg}
+            alt="Kavya's personal wellness journey"
+          />
+
+          <div className="story-image-label">
+            <span>MY WELLNESS JOURNEY</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= CREDENTIALS ================= */}
+      <section className="credentials-section" data-aos="fade-up">
+
+        <div className="section-heading">
+
+          <span className="section-label">
+            BACKGROUND
+          </span>
+
+          <h2>
+            Built on science.
+            <br />
+            <em>Grounded in everyday life.</em>
+          </h2>
+
+        </div>
+
+
+        <div className="credentials-grid">
+
+          <article className="credential-card">
+            <span className="card-number">01</span>
+
+            <h3>M.Sc Physics</h3>
+
+            <p>
+              Academic background in Physics, with an analytical and
+              structured approach to understanding complex systems.
+            </p>
+          </article>
+
+
+          <article className="credential-card">
+            <span className="card-number">02</span>
+
+            <h3>Clinical Nutrition</h3>
+
+            <p>
+              PGD in Clinical Nutrition (P), supporting my continued
+              learning in nutrition science and health-focused practice.
+            </p>
+          </article>
+
+
+          <article className="credential-card">
+            <span className="card-number">03</span>
+
+            <h3>Wellness Experience</h3>
+
+            <p>
+              2+ years of practical wellness experience, working with
+              people on sustainable food and lifestyle changes.
+            </p>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= FOCUS AREAS ================= */}
+      <section className="focus-section" data-aos="fade-up">
+
+        <div className="focus-heading">
+
+          <span className="section-label">
+            AREAS I WORK WITH
+          </span>
+
+          <h2>
+            Nutrition that meets you
+            <br />
+            <em>where you are.</em>
+          </h2>
+
+          <p>
+            Personalised guidance across different goals, life stages
+            and everyday wellness needs.
+          </p>
+
+        </div>
+
+
+        <div className="focus-list">
+
+          <div className="focus-item">
+            <span>01</span>
+            <h3>Healthy Weight Management</h3>
+            <p>Fat loss, healthy weight gain & body composition.</p>
+          </div>
+
+          <div className="focus-item">
+            <span>02</span>
+            <h3>Women’s Wellness</h3>
+            <p>PCOS, hormonal health, fertility & life-stage nutrition.</p>
+          </div>
+
+          <div className="focus-item">
+            <span>03</span>
+            <h3>Metabolic & Gut Health</h3>
+            <p>Everyday nutrition for metabolic and digestive wellness.</p>
+          </div>
+
+          <div className="focus-item">
+            <span>04</span>
+            <h3>Family Nutrition</h3>
+            <p>Practical nutrition for children, families & busy lifestyles.</p>
+          </div>
+
+          <div className="focus-item">
+            <span>05</span>
+            <h3>Plant-Based Nutrition</h3>
+            <p>Balanced, practical approaches to plant-forward eating.</p>
+          </div>
+
+          <div className="focus-item">
+            <span>06</span>
+            <h3>Everyday Wellness</h3>
+            <p>Food habits, cooking, routines, mindset & sustainable change.</p>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= PHILOSOPHY ================= */}
+      <section className="philosophy-section" data-aos="fade-up">
+
+        <span className="section-label">
+          THE KAVYA’S NUTRITION PHILOSOPHY
+        </span>
+
+        <h2>
+          “Better nutrition isn't about
+          <br />
+          <em>doing everything perfectly.</em>
+          <br />
+          It's about doing the right things consistently.”
+        </h2>
+
+      </section>
+
+
+      {/* ================= SOCIAL / FOLLOW ================= */}
+      <section className="journey-section" data-aos="fade-up">
+
+        <div className="journey-copy">
+
+          <span className="section-label">
+            FOLLOW THE JOURNEY
+          </span>
+
+          <h2>
+            Nutrition education,
+            <br />
+            <em>made simple.</em>
+          </h2>
+
+          <p>
+            I share practical nutrition education, wellness insights,
+            food ideas and realistic lifestyle strategies through
+            Kavya’s Nutrition.
+          </p>
+
+          <p className="follow-text">
+            Follow <strong>@kavyasnutrition</strong>
+          </p>
+
+          <div className="social-icons">
+
+            <a
+              href="https://instagram.com/kavyasnutrition"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://linkedin.com/in/kavyasnutrition/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
+            </a>
+
+            <a
+              href="https://youtube.com/@kavyasnutrition"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+            >
+              <FaYoutube />
+            </a>
+
+            <a
+              href="https://facebook.com/kavyasnutrition"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook"
+            >
+              <FaFacebook />
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ================= FINAL CTA ================= */}
+      <section className="about-cta" data-aos="fade-up">
+
+        <div>
+          <span className="section-label">
+            READY TO BEGIN?
+          </span>
+
+          <h2>
+            Let’s make nutrition
+            <br />
+            <em>work for your life.</em>
+          </h2>
+        </div>
+
+        <Link to="/contact" className="about-cta-button">
+          Book a Session
+          <FaArrowRight />
+        </Link>
+
+      </section>
+
+    </main>
+  );
+};
+
 export default About;

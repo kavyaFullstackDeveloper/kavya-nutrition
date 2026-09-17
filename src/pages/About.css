@@ -1,230 +1,781 @@
+/* =========================================================
+   KAVYA'S NUTRITION — ABOUT PAGE
+   Premium editorial / clinical wellness aesthetic
+========================================================= */
+
 .about-page {
-  padding: 3rem 2rem;
-  background: #ffffff;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  max-width: 1200px;
-  margin: 0 auto;
-  overflow-x: hidden;
+  --cream: #fffdf8;
+  --cream-dark: #f7f3ea;
+  --forest: #244b35;
+  --forest-light: #315c43;
+  --sage: #e7eee7;
+  --gold: #a88760;
+  --text: #667067;
+  --dark: #26372d;
+  --line: #e6e0d4;
+
+  width: 100%;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
 
-.intro-section {
-  text-align: center;
-  margin-bottom: 3rem;
-}
 
-.intro-section h2 {
-  color: #005A5B; /* Deep Clinical Teal */
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
-.clinical-subtitle {
-  font-size: 1.2rem;
-  color: #B76E79; /* Rose Gold / Muted Premium Pink */
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin-bottom: 1rem;
-}
-
-.intro-text {
-  font-size: 1.1rem;
-  color: #444;
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.6;
-}
-
-.split-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  align-items: center;
-  margin-top: 3rem;
-  justify-content: center;
-}
-
-.testimonial-text {
-  flex: 1.2;
-  min-width: 320px;
-}
-
-.testimonial-text h3 {
-  color: #005A5B;
-  margin-bottom: 1rem;
-}
-
-.testimonial-text p {
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-.testimonial-image-wrapper, .branding-image-wrapper {
-  flex: 0.8;
-  display: flex;
-  justify-content: center;
-  min-width: 280px;
-}
-
-.transformation-image, .profile-recent-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0, 90, 91, 0.15);
-  border: 2px solid rgba(183, 110, 121, 0.3); /* Rose Gold Accent Border */
-}
-
-.card-style {
-  background: #f4faf9; /* Soft Teal/Mint Clean Background */
-  padding: 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  flex: 1;
-}
-
-.card-style h3 {
-  color: #005A5B;
-  border-bottom: 2px solid rgba(183, 110, 121, 0.2);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.sec-1 {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.certifications-section ul, .help-list {
-  list-style: none;
-  padding: 0;
-}
-
-.certifications-section li, .help-list li {
-  margin: 1rem 0;
-  line-height: 1.5;
-  color: #333;
-}
-
-/* Branding & Social Links Area */
-.branding-text {
-  flex: 1.2;
-}
-
-.branding-text h3 {
-  color: #005A5B;
-  margin-bottom: 1rem;
-}
-
-.social-media-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 1.5rem;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  padding: 10px 16px;
-  border-radius: 30px;
-  text-decoration: none;
-  color: #005A5B;
+.about-page h1,
+.about-page h2,
+.about-page h3 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
   font-weight: 500;
-  border: 1px solid rgba(0, 90, 91, 0.2);
-  transition: all 0.3s ease;
 }
 
-.social-link:hover {
-  background: #005A5B;
-  color: #ffffff;
-  transform: translateY(-2px);
+.about-page p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
 }
 
-/* Call to Action Footer */
-.footer-action-section {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  background-color: #f4faf9;
-  padding: 3rem 1rem;
+.about-page em {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.section-label,
+.about-eyebrow {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.about-intro {
+  width: min(900px, 90%);
+  margin: 0 auto;
+  padding: 54px 20px 48px;
   text-align: center;
-  margin-top: 4rem;
-  border-top: 1px solid rgba(183, 110, 121, 0.2);
 }
 
-.footer-action-section h3 {
-  color: #005A5B;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+.about-eyebrow {
+  margin-bottom: 16px;
 }
 
-.footer-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.about-intro h1 {
+  color: var(--forest);
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
 }
 
-.action-btn {
+.about-intro p {
+  max-width: 700px;
+  margin: 24px auto 0;
+  font-size: 1rem;
+}
+
+.intro-line {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  border-radius: 30px;
-  text-decoration: none;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.intro-line span {
+  width: 45px;
+  height: 1px;
+  background: var(--line);
+}
+
+.intro-line small {
+  color: var(--forest);
+  font-size: 0.7rem;
   font-weight: 600;
-  transition: transform 0.2s ease;
+  letter-spacing: 0.12em;
 }
 
-.action-btn:hover {
-  transform: scale(1.05);
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.about-profile {
+  width: min(1080px, 90%);
+  margin: 10px auto 100px;
+
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 90px;
+  align-items: center;
 }
 
-.whatsapp-btn {
-  background: #25D366;
+.profile-image-column {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+}
+
+.profile-image-frame {
+  width: 100%;
+  background: #f1eee6;
+  overflow: hidden;
+}
+
+.profile-image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.image-caption {
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+
+  padding: 10px 18px;
+  background: rgba(255, 253, 248, 0.97);
+  border: 1px solid var(--line);
+
+  color: var(--forest);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+
+  box-shadow: 0 8px 24px rgba(40, 55, 45, 0.08);
+}
+
+.image-caption i {
+  color: var(--gold);
+  font-style: normal;
+  margin: 0 7px;
+}
+
+.profile-content {
+  max-width: 610px;
+}
+
+.profile-content h2 {
+  margin-top: 14px;
+  color: var(--forest);
+  font-size: clamp(2.4rem, 4vw, 3.7rem);
+  line-height: 1.05;
+}
+
+.profile-content p {
+  margin-top: 20px;
+  font-size: 0.94rem;
+}
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-stats div {
+  padding: 20px 16px;
+  border-right: 1px solid var(--line);
+}
+
+.profile-stats div:last-child {
+  border-right: none;
+}
+
+.profile-stats strong {
+  display: block;
+  color: var(--forest);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.profile-stats span {
+  display: block;
+  margin-top: 5px;
+  color: #899087;
+  font-size: 0.65rem;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   PERSONAL STORY
+========================================================= */
+
+.story-section {
+  width: min(1080px, 90%);
+  margin: 0 auto 105px;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 85px;
+  align-items: center;
+}
+
+.story-content {
+  max-width: 570px;
+}
+
+.story-content h2 {
+  margin-top: 14px;
+  color: var(--forest);
+  font-size: clamp(2.25rem, 4vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.story-content p {
+  margin-top: 20px;
+  font-size: 0.94rem;
+}
+
+.story-note {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.note-mark {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  line-height: 0.8;
+}
+
+.story-note p {
+  margin: 0;
+  color: var(--forest);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.story-image {
+  position: relative;
+  max-width: 430px;
+  margin: auto;
+}
+
+.story-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.story-image-label {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+
+  padding: 9px 13px;
+  background: rgba(255, 253, 248, 0.94);
+
+  color: var(--forest);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+
+/* =========================================================
+   CREDENTIALS
+========================================================= */
+
+.credentials-section {
+  width: min(1080px, 90%);
+  margin: 0 auto 105px;
+}
+
+.section-heading {
+  margin-bottom: 35px;
+}
+
+.section-heading h2 {
+  margin-top: 12px;
+  color: var(--forest);
+  font-size: clamp(2.2rem, 4vw, 3.3rem);
+  line-height: 1.08;
+}
+
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.credential-card {
+  position: relative;
+  padding: 30px 30px 34px;
+  border-right: 1px solid var(--line);
+}
+
+.credential-card:last-child {
+  border-right: none;
+}
+
+.card-number {
+  display: block;
+  margin-bottom: 25px;
+  color: var(--gold);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.credential-card h3 {
+  color: var(--forest);
+  font-size: 1.45rem;
+}
+
+.credential-card p {
+  margin-top: 12px;
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FOCUS AREAS
+========================================================= */
+
+.focus-section {
+  width: min(1080px, 90%);
+  margin: 0 auto 105px;
+
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 85px;
+}
+
+.focus-heading {
+  max-width: 360px;
+}
+
+.focus-heading h2 {
+  margin-top: 14px;
+  color: var(--forest);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.08;
+}
+
+.focus-heading p {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+.focus-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.focus-item {
+  padding: 23px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.focus-item:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+
+.focus-item span {
+  color: var(--gold);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.focus-item h3 {
+  margin-top: 10px;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.focus-item p {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   PHILOSOPHY
+========================================================= */
+
+.philosophy-section {
+  width: 100%;
+  padding: 82px 20px;
+  margin-bottom: 100px;
+
+  background: var(--cream-dark);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  text-align: center;
+}
+
+.philosophy-section h2 {
+  max-width: 900px;
+  margin: 18px auto 0;
+
+  color: var(--forest);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.18;
+}
+
+
+/* =========================================================
+   SOCIAL / FOLLOW
+   No image here — keeps the page clean.
+========================================================= */
+
+.journey-section {
+  width: min(1080px, 90%);
+  margin: 0 auto 65px;
+
+  padding: 55px 65px;
+
+  background: #edf2eb;
+  border: 1px solid #dfe7dc;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.journey-copy {
+  max-width: 700px;
+}
+
+.journey-copy h2 {
+  margin-top: 13px;
+  color: var(--forest);
+  font-size: clamp(2.25rem, 4vw, 3.4rem);
+  line-height: 1.05;
+}
+
+.journey-copy > p {
+  max-width: 610px;
+  margin: 18px auto 0;
+  font-size: 0.88rem;
+}
+
+.follow-text {
+  margin-top: 20px !important;
+  color: var(--forest) !important;
+}
+
+.follow-text strong {
+  font-weight: 700;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 11px;
+  margin-top: 22px;
+}
+
+.social-icons a {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7ded4;
+  border-radius: 50%;
+
+  background: rgba(255, 253, 248, 0.8);
+  color: var(--forest);
+
+  font-size: 15px;
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-3px);
+  background: var(--forest);
   color: white;
 }
 
-.email-btn {
-  background: #005A5B;
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.about-cta {
+  width: min(1080px, 90%);
+  margin: 0 auto 55px;
+
+  padding: 42px 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-cta h2 {
+  margin-top: 8px;
+  color: var(--forest);
+  font-size: clamp(1.9rem, 3vw, 2.8rem);
+  line-height: 1.08;
+}
+
+.about-cta-button {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 23px;
+
+  background: var(--forest);
   color: white;
+
+  border-radius: 30px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 8px 22px rgba(36, 75, 53, 0.16);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-/* ------------ RESPONSIVE BREAKPOINTS ------------ */
+.about-cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(36, 75, 53, 0.22);
+}
 
-@media screen and (max-width: 1024px) {
-  .sec-1, .split-section {
-    flex-direction: column;
-    gap: 2rem;
+.about-cta-button svg {
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .about-profile,
+  .story-section,
+  .focus-section {
+    grid-template-columns: 1fr;
+    gap: 45px;
   }
-  
-  .card-style, .testimonial-text {
-    max-width: 100%;
-    width: 100%;
+
+  .profile-image-column,
+  .story-image {
+    max-width: 520px;
+  }
+
+  .profile-content,
+  .story-content,
+  .focus-heading {
+    max-width: 700px;
+  }
+
+  .credentials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credential-card {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .credential-card:last-child {
+    border-bottom: none;
+  }
+
+  .focus-section {
+    gap: 35px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .about-page {
-    padding: 1.5rem 1rem;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .about-intro {
+    padding: 38px 8px 40px;
   }
 
-  .intro-section h2 {
+  .about-intro h1 {
+    font-size: 2.45rem;
+  }
+
+  .about-intro p {
+    font-size: 0.88rem;
+  }
+
+  .intro-line {
+    gap: 10px;
+  }
+
+  .intro-line span {
+    width: 25px;
+  }
+
+  .intro-line small {
+    font-size: 0.58rem;
+  }
+
+  .about-profile,
+  .story-section,
+  .credentials-section,
+  .focus-section,
+  .journey-section,
+  .about-cta {
+    width: 88%;
+  }
+
+  .about-profile {
+    margin-bottom: 75px;
+    gap: 45px;
+  }
+
+  .profile-content h2,
+  .story-content h2 {
+    font-size: 2.3rem;
+  }
+
+  .profile-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-stats div {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .profile-stats div:last-child {
+    border-bottom: none;
+  }
+
+  .story-section {
+    margin-bottom: 75px;
+  }
+
+  .credentials-section,
+  .focus-section {
+    margin-bottom: 75px;
+  }
+
+  .credential-card {
+    padding: 25px 20px;
+  }
+
+  .focus-list {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .focus-item {
+    padding: 20px 0;
+  }
+
+  .philosophy-section {
+    padding: 65px 18px;
+    margin-bottom: 70px;
+  }
+
+  .philosophy-section h2 {
     font-size: 2rem;
   }
 
-  .card-style {
-    padding: 1.5rem;
+  .journey-section {
+    padding: 45px 20px;
+    margin-bottom: 40px;
   }
 
-  .social-media-grid {
+  .journey-copy h2 {
+    font-size: 2.35rem;
+  }
+
+  .about-cta {
+    padding: 35px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+
+  .about-cta-button {
+    width: 100%;
     justify-content: center;
+  }
+
+  .image-caption {
+    font-size: 0.5rem;
+    padding: 8px 11px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .about-intro h1 {
+    font-size: 2.15rem;
+  }
+
+  .profile-content h2,
+  .story-content h2 {
+    font-size: 2rem;
+  }
+
+  .journey-copy h2 {
+    font-size: 2.05rem;
+  }
+
+  .social-icons a {
+    width: 38px;
+    height: 38px;
   }
 }
